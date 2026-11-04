@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mes créations — HBS Coiffures à Andenne</title>
+<meta name="description" content="Dégradés, motifs et barbes : découvrez en photos les coupes réalisées chez HBS Coiffures à Andenne.">
+<meta name="theme-color" content="#0B0A09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;700&display=swap">
+<style>
+  :root {
+    --ink: #0B0A09;
+    --warm: #141210;
+    --gold: #C9A45C;
+    --gold-2: #E6C98A;
+    --gold-rule: rgba(201, 164, 92, .55);
+    --cream: #F3EDE2;
+    --body: rgba(243, 237, 226, .78);
+    --display: "Cormorant Garamond", "Times New Roman", serif;
+    --ui: "Manrope", "Segoe UI", system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--cream);
+    font: 400 16px/1.5 var(--ui);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, p, ul { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  a { color: inherit; }
+  img { display: block; }
+  :focus-visible { outline: 2px solid var(--gold-2); outline-offset: 3px; border-radius: 2px; }
+
+  /* Static film grain, as on the home page */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: .04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 28px;
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    font: 700 12px/1 var(--ui);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color .2s, color .2s, border-color .2s;
+  }
+  .btn--gold { background: var(--gold); color: var(--ink); }
+  .btn--gold:hover { background: var(--gold-2); border-color: var(--gold-2); }
+  .btn--line { background: transparent; color: var(--gold-2); }
+  .btn--line:hover { background: var(--gold); color: var(--ink); }
+
+  /* Header */
+  .site-head {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 20;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 clamp(16px, 3vw, 40px);
+    background: rgba(11, 10, 9, .8);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    text-decoration: none;
+    font: 700 12px/1 var(--ui);
+    letter-spacing: .3em;
+  }
+  .brand span { text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 2px 0; }
+  .brand img {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    padding: 4px;
+    object-fit: contain;
+    background: #000;
+    border: 1px solid var(--gold-rule);
+    border-radius: 50%;
+  }
+  .head-right { display: flex; align-items: center; gap: 20px; flex: none; }
+  .head-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: 700 11px/1 var(--ui);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .head-link:hover { color: var(--gold-2); }
+  .site-head .btn { min-height: 40px; padding: 0 20px; font-size: 11px; color: var(--cream); }
+  .site-head .btn:hover { color: var(--ink); }
+
+  /* Intro */
+  .intro { padding: 136px 22px 56px; text-align: center; }
+  .eyebrow {
+    display: block;
+    font: 700 11px/1.4 var(--ui);
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .display {
+    font-family: var(--display);
+    font-weight: 600;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .display .ln { display: block; }
+  .display em { font-style: italic; font-weight: 500; color: var(--gold); }
+  .intro h1 { margin-top: 16px; font-size: clamp(48px, 7vw, 96px); }
+  .intro h1 em { text-transform: none; }
+  .intro p { margin-top: 20px; color: var(--body); }
+
+  /* Gallery: columns keep every photo whole, whatever its format */
+  .gallery {
+    columns: 3;
+    column-gap: 20px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(22px, 4vw, 40px) 104px;
+  }
+  .gallery li { margin-bottom: 20px; break-inside: avoid; }
+  .gallery a {
+    display: block;
+    overflow: hidden;
+    background: var(--warm);
+    border: 1px solid var(--gold-rule);
+  }
+  .gallery img { width: 100%; height: auto; transition: transform .5s ease; }
+  .gallery a:hover img, .gallery a:focus-visible img { transform: scale(1.04); }
+
+  /* Enlarged view */
+  .viewer {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--cream);
+  }
+  .viewer::backdrop { background: rgba(11, 10, 9, .94); }
+  .viewer[open] { display: flex; align-items: center; justify-content: center; }
+  .viewer img {
+    max-width: calc(100vw - 32px);
+    max-height: calc(100dvh - 128px);
+    width: auto;
+    height: auto;
+    border: 1px solid var(--gold-rule);
+  }
+  .viewer button {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    color: var(--cream);
+    background: rgba(11, 10, 9, .75);
+    border: 1px solid var(--gold-rule);
+    border-radius: 50%;
+    font: 400 24px/1 var(--ui);
+    cursor: pointer;
+  }
+  .viewer button:hover { background: var(--gold); color: var(--ink); }
+  .viewer .close { top: 16px; right: 16px; }
+  .viewer .prev { left: 16px; top: 50%; margin-top: -24px; }
+  .viewer .next { right: 16px; top: 50%; margin-top: -24px; }
+  .viewer .count {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 22px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--body);
+  }
+
+  /* Footer */
+  .foot-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 88px 22px;
+    border-top: 1px solid var(--gold-rule);
+  }
+  .foot-main h2 { font-size: clamp(30px, 4.6vw, 60px); }
+  .foot-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 36px; }
+  .foot-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 32px;
+    padding: 20px clamp(22px, 4vw, 40px);
+    border-top: 1px solid var(--gold-rule);
+    font-size: 12px;
+    color: var(--body);
+  }
+  .foot-bar strong { color: var(--cream); }
+  .foot-bar a { display: inline-block; padding: 8px 0; }
+
+  .mbar { display: none; }
+
+  @media (max-width: 860px) {
+    .head-link { display: none; }
+  }
+  @media (max-width: 609px) {
+    .brand { gap: 10px; letter-spacing: .2em; font-size: 11px; }
+    .intro { padding: 112px 22px 40px; }
+    .gallery { columns: 1; padding: 0 22px 72px; }
+    .gallery li { margin-bottom: 14px; }
+    .viewer .prev, .viewer .next { top: auto; bottom: 10px; margin-top: 0; }
+    .viewer img { max-height: calc(100dvh - 160px); }
+    .foot-bar { flex-direction: column; align-items: flex-start; padding-bottom: 76px; }
+    .mbar {
+      position: fixed;
+      inset: auto 0 0;
+      z-index: 20;
+      height: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--ink);
+      border-top: 1px solid var(--gold-rule);
+    }
+    .mbar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 700 12px/1 var(--ui);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      outline-offset: -3px;
+    }
+    .mbar a:first-child { background: var(--gold); color: var(--ink); }
+    .mbar a:last-child { color: var(--gold-2); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery img, .btn { transition: none; }
+    .gallery a:hover img, .gallery a:focus-visible img { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <a class="brand" href="index.html" aria-label="HBS Coiffures, retour à l'accueil">
+    <img src="logo-hb.jpg" width="480" height="385" alt="">
+    <span>HBS Coiffures</span>
+  </a>
+  <div class="head-right">
+    <a class="head-link" href="index.html">Accueil</a>
+    <a class="btn btn--line" href="[LIEN DE RÉSERVATION]">Réserver</a>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <span class="eyebrow">Le travail du salon</span>
+    <h1 class="display"><span class="ln">Mes </span><span class="ln"><em>créations.</em></span></h1>
+    <p>Dégradés, motifs et barbes, réalisés au salon.</p>
+  </div>
+
+  <!-- AJOUTER UNE COUPE
+       1. Mettre la photo entière dans le dossier creations/ : tous les formats conviennent.
+       2. Copier une ligne <li> ci-dessous, puis changer le nom du fichier aux deux endroits, sa largeur et sa hauteur, et la description (alt).
+       La plus récente peut se placer en premier. Publier uniquement avec l'accord du client,
+       et celui des parents pour un enfant. -->
+  <ul class="gallery" id="gallery">
+    <li><a href="creations/coupe-01.jpg"><img src="creations/coupe-01.jpg" width="960" height="720" alt="Dégradé et motif tracé au rasoir sur des cheveux bouclés, vu de dos."></a></li>
+    <li><a href="creations/coupe-10.jpg"><img src="creations/coupe-10.jpg" width="1440" height="1440" loading="lazy" alt="Motif en étoile tracé au rasoir, vu de près."></a></li>
+    <li><a href="creations/coupe-11.jpg"><img src="creations/coupe-11.jpg" width="1440" height="1439" loading="lazy" alt="Cheveux coiffés en arrière, raie tracée et dégradé."></a></li>
+    <li><a href="creations/coupe-02.jpg"><img src="creations/coupe-02.jpg" width="1440" height="1440" alt="Contour de barbe net et dégradé sur le côté."></a></li>
+    <li><a href="creations/coupe-12.jpg"><img src="creations/coupe-12.jpg" width="1440" height="1440" loading="lazy" alt="Grand motif géométrique tracé sur le côté d'une coupe courte."></a></li>
+    <li><a href="creations/coupe-13.jpg"><img src="creations/coupe-13.jpg" width="1440" height="1439" loading="lazy" alt="Cheveux noirs coiffés sur le côté, raie tracée et dégradé."></a></li>
+    <li><a href="creations/coupe-03.jpg"><img src="creations/coupe-03.jpg" width="1440" height="1080" loading="lazy" alt="Nuque dégradée avec un motif en V, cheveux courts."></a></li>
+    <li><a href="creations/coupe-14.jpg"><img src="creations/coupe-14.jpg" width="1440" height="1440" loading="lazy" alt="Motif en vagues tracé sur un dégradé."></a></li>
+    <li><a href="creations/coupe-15.jpg"><img src="creations/coupe-15.jpg" width="960" height="960" loading="lazy" alt="Volume coiffé sur le dessus avec mèches claires."></a></li>
+    <li><a href="creations/coupe-04.jpg"><img src="creations/coupe-04.jpg" width="720" height="960" loading="lazy" alt="Dégradé haut avec deux lignes tracées sur le côté."></a></li>
+    <li><a href="creations/coupe-16.jpg"><img src="creations/coupe-16.jpg" width="720" height="960" loading="lazy" alt="Cheveux bouclés avec contour et ligne tracés au rasoir."></a></li>
+    <li><a href="creations/coupe-17.jpg"><img src="creations/coupe-17.jpg" width="1440" height="1439" loading="lazy" alt="Nuque dégradée régulière, vue de dos."></a></li>
+    <li><a href="creations/coupe-05.jpg"><img src="creations/coupe-05.jpg" width="960" height="960" loading="lazy" alt="Deux coupes côte à côte : dégradé régulier et coloration bleu vif."></a></li>
+    <li><a href="creations/coupe-18.jpg"><img src="creations/coupe-18.jpg" width="720" height="960" loading="lazy" alt="Motif courbe tracé sur le côté, cheveux coiffés."></a></li>
+    <li><a href="creations/coupe-19.jpg"><img src="creations/coupe-19.jpg" width="1440" height="1440" loading="lazy" alt="Cheveux noirs coiffés, ligne tracée au-dessus du dégradé."></a></li>
+    <li><a href="creations/coupe-06.jpg"><img src="creations/coupe-06.jpg" width="720" height="960" loading="lazy" alt="Motif en zigzag tracé au rasoir, mèches décolorées sur le dessus."></a></li>
+    <li><a href="creations/coupe-20.jpg"><img src="creations/coupe-20.jpg" width="720" height="960" loading="lazy" alt="Motif tracé à la tondeuse sur un dégradé court."></a></li>
+    <li><a href="creations/coupe-21.jpg"><img src="creations/coupe-21.jpg" width="1440" height="1439" loading="lazy" alt="Dégradé progressif sur cheveux coiffés en arrière, vu de côté."></a></li>
+    <li><a href="creations/coupe-07.jpg"><img src="creations/coupe-07.jpg" width="720" height="960" loading="lazy" alt="Dégradé à blanc avec une raie tracée sur le côté."></a></li>
+    <li><a href="creations/coupe-22.jpg"><img src="creations/coupe-22.jpg" width="1440" height="1440" loading="lazy" alt="Deux lignes parallèles tracées sur un dégradé."></a></li>
+    <li><a href="creations/coupe-23.jpg"><img src="creations/coupe-23.jpg" width="960" height="720" loading="lazy" alt="Cheveux coiffés sur le côté avec reflets, dégradé bas."></a></li>
+    <li><a href="creations/coupe-08.jpg"><img src="creations/coupe-08.jpg" width="720" height="960" loading="lazy" alt="Dégradé et ligne tracée sur une coupe courte, avec pince sur le dessus."></a></li>
+    <li><a href="creations/coupe-24.jpg"><img src="creations/coupe-24.jpg" width="720" height="960" loading="lazy" alt="Cheveux longs attachés, nuque dégradée et ligne courbe tracée."></a></li>
+    <li><a href="creations/coupe-25.jpg"><img src="creations/coupe-25.jpg" width="960" height="720" loading="lazy" alt="Motif en vagues et cheveux coiffés en arrière."></a></li>
+    <li><a href="creations/coupe-09.jpg"><img src="creations/coupe-09.jpg" width="720" height="960" loading="lazy" alt="Coupe coiffée sur le côté avec raie tracée et dégradé."></a></li>
+    <li><a href="creations/coupe-26.jpg"><img src="creations/coupe-26.jpg" width="960" height="720" loading="lazy" alt="Coupe rase avec une large ligne tracée sur le côté."></a></li>
+    <li><a href="creations/coupe-27.jpg"><img src="creations/coupe-27.jpg" width="1440" height="1440" loading="lazy" alt="Dégradé bas sur cheveux mi-longs coiffés en arrière."></a></li>
+  </ul>
+</main>
+
+<dialog class="viewer" id="viewer" aria-label="Photo agrandie">
+  <img id="viewerImg" src="" alt="">
+  <button class="close" type="button" aria-label="Fermer">×</button>
+  <button class="prev" type="button" aria-label="Photo précédente">‹</button>
+  <button class="next" type="button" aria-label="Photo suivante">›</button>
+  <p class="count" id="viewerCount" aria-live="polite"></p>
+</dialog>
+
+<footer>
+  <div class="foot-main">
+    <h2 class="display"><span class="ln">Votre prochaine coupe </span><span class="ln">commence <em>ici.</em></span></h2>
+    <div class="foot-btns">
+      <a class="btn btn--gold" href="[LIEN DE RÉSERVATION]">Réserver</a>
+      <a class="btn btn--line" href="tel:+32493916130">Appeler</a>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <strong>HBS Coiffures</strong>
+    <a href="index.html">Retour à l’accueil</a>
+    <span>Mar–Sam 9h–19h · Dim 9h–18h · Lun fermé</span>
+    <span>© 2026 HBS Coiffures</span>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Actions rapides">
+  <a href="[LIEN DE RÉSERVATION]">Réserver</a>
+  <a href="tel:+32493916130">Appeler</a>
+</nav>
+
+<script>
+(function () {
+  'use strict';
+  /* Without JS, each thumbnail is a plain link to its photo. */
+  var viewer = document.getElementById('viewer');
+  if (!viewer.showModal) return;
+
+  var links = [].slice.call(document.querySelectorAll('#gallery a'));
+  var img = document.getElementById('viewerImg');
+  var count = document.getElementById('viewerCount');
+  var current = 0;
+
+  function show(i) {
+    current = (i + links.length) % links.length;
+    var thumb = links[current].querySelector('img');
+    img.src = links[current].getAttribute('href');
+    img.alt = thumb.alt;
+    count.textContent = (current + 1) + ' / ' + links.length;
+  }
+
+  links.forEach(function (link, i) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      show(i);
+      viewer.showModal();
+    });
+  });
+
+  viewer.querySelector('.close').addEventListener('click', function () { viewer.close(); });
+  viewer.querySelector('.prev').addEventListener('click', function () { show(current - 1); });
+  viewer.querySelector('.next').addEventListener('click', function () { show(current + 1); });
+  viewer.addEventListener('click', function (e) { if (e.target === viewer) viewer.close(); });
+  viewer.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+})();
+</script>
+</body>
+</html>

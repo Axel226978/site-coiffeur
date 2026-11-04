@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HBS Coiffures — Coiffeur barbier homme à [VILLE]</title>
-<meta name="description" content="Coupe homme, dégradé et barbe, au millimètre, à [VILLE]. Ouvert du mardi au dimanche. Réservez votre créneau chez HBS Coiffures.">
+<title>HBS Coiffures — Coiffeur barbier homme à Andenne</title>
+<meta name="description" content="Coupe homme, dégradé et barbe, au millimètre, à Andenne. Ouvert du mardi au dimanche. Réservez votre créneau chez HBS Coiffures.">
 <meta name="theme-color" content="#0B0A09">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,14 +16,16 @@
   "@type": "HairSalon",
   "name": "HBS Coiffures",
   "image": "[PHOTO_RÉELLE_DU_SALON].jpg",
-  "telephone": "[TÉLÉPHONE]",
+  "telephone": "+32 493 91 61 30",
+  "email": "new_look2016@hotmail.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "[RUE ET NUMÉRO]",
-    "postalCode": "[CODE POSTAL]",
-    "addressLocality": "[VILLE]"
+    "streetAddress": "Rue du Pont 6",
+    "postalCode": "5300",
+    "addressLocality": "Andenne",
+    "addressCountry": "BE"
   },
-  "hasMap": "[LIEN GOOGLE MAPS]",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Rue+du+Pont+6,+5300+Andenne",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -214,6 +216,19 @@
     border: 1px solid var(--gold-rule);
     border-radius: 50%;
   }
+  .head-right { display: flex; align-items: center; gap: 20px; flex: none; }
+  .head-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font: 700 11px/1 var(--ui);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .7);
+  }
+  .head-link:hover { color: var(--gold-2); }
+  @media (max-width: 860px) { .head-link { display: none; } }
   .site-head .btn { min-height: 40px; padding: 0 20px; font-size: 11px; color: var(--cream); flex: none; }
   .site-head .btn:hover { color: var(--ink); }
 
@@ -468,13 +483,10 @@
   .card-meta {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
     margin-top: 14px;
     padding-top: 12px;
     border-top: 1px solid var(--gold-rule);
   }
-  .card .dur { font-size: 14px; color: var(--body); }
   .card .price {
     font-family: var(--display);
     font-weight: 600;
@@ -484,7 +496,7 @@
     color: var(--gold-2);
   }
   .day-row dd { font-variant-numeric: lining-nums; }
-  .menu-cta { margin-top: 20px; }
+  .menu-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 
   /* Vertical list: portrait and reduced motion */
   .m-list .menu-panel {
@@ -501,7 +513,7 @@
   .m-list .menu-cta { margin-top: 32px; }
 
   /* ---------- Horaires + avis ---------- */
-  .paper { position: relative; z-index: 2; background: var(--paper); }
+  .paper { position: relative; z-index: 2; margin-top: -1px; background: var(--paper); }
   .wrap { max-width: 1120px; margin: 0 auto; }
   .hours {
     display: grid;
@@ -742,8 +754,8 @@
 
 <!-- Photos d'illustration, licence Unsplash (unsplash.com/license), pas celles du salon :
      HERO Hai Phung (m4Pd_e-4zKs) · CHAIR Redd Francisco (BBGyxhtPpC0) · INTERIOR Nathon Oski (EW_rqoSdDes)
-     DETAIL_1 Agustin Fernandez (6AhYcZMcKZI) · DETAIL_2 Mr Shave (4k60yfGy7fU) · DETAIL_3 Fábio Alves (DYetcnz0jRY)
-     DETAIL_4 Amritpal Singh (wE-GAKR9WaY) · DETAIL_5 Daria Andriianova (Dq2CoSqalnM)
+     DETAIL_1 Agustin Fernandez (6AhYcZMcKZI) · DETAIL_2 Mr Shave (4k60yfGy7fU) · DETAIL_3 Michael DeMoya (Q82AM6BWBPM)
+     DETAIL_4 Amritpal Singh (wE-GAKR9WaY) · DETAIL_5 John Rodriguez (mn8-zTvax-4)
      Les photos fournies par le salon sont dans photos-salon/. -->
 <!-- Le blason complet (logo-hb.jpg) s'affiche dans l'en-tête et le pied de page.
      Le symbole #hb est le monogramme du logo, décalqué en contours pour pouvoir se dessiner au trait. -->
@@ -765,7 +777,10 @@
     <img src="logo-hb.jpg" width="480" height="385" alt="">
     <span>HBS Coiffures</span>
   </a>
-  <a class="btn btn--line" href="[LIEN DE RÉSERVATION]">Réserver</a>
+  <div class="head-right">
+    <a class="head-link" href="creations.html">Mes créations</a>
+    <a class="btn btn--line" href="[LIEN DE RÉSERVATION]">Réserver</a>
+  </div>
 </header>
 
 <main id="top">
@@ -848,7 +863,7 @@
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">01</span><h3>Coupe homme</h3></div>
-                <div class="card-meta"><p class="dur">[DURÉE]</p><p class="price">[PRIX] €</p></div>
+                <div class="card-meta"><p class="price">[PRIX] €</p></div>
               </div>
             </li>
             <!-- à confirmer -->
@@ -858,17 +873,17 @@
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">02</span><h3>Taille de barbe</h3></div>
-                <div class="card-meta"><p class="dur">[DURÉE]</p><p class="price">[PRIX] €</p></div>
+                <div class="card-meta"><p class="price">[PRIX] €</p></div>
               </div>
             </li>
             <!-- à confirmer -->
             <li class="card" data-optional>
               <figure class="ph detail" data-ph="[PHOTO_DETAIL_3] · 1080×720">
-                <img src="[PHOTO_DETAIL_3].jpg" width="1080" height="720" loading="lazy" alt="Barbier travaillant la nuque d'un client au rasoir et au peigne.">
+                <img src="[PHOTO_DETAIL_3].jpg" width="1080" height="720" loading="lazy" alt="Barbier passant la tondeuse sur un dégradé, client à la barbe taillée.">
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">03</span><h3>Coupe + barbe</h3></div>
-                <div class="card-meta"><p class="dur">[DURÉE]</p><p class="price">[PRIX] €</p></div>
+                <div class="card-meta"><p class="price">[PRIX] €</p></div>
               </div>
             </li>
             <!-- à confirmer -->
@@ -878,21 +893,24 @@
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">04</span><h3>Dégradé / fade</h3></div>
-                <div class="card-meta"><p class="dur">[DURÉE]</p><p class="price">[PRIX] €</p></div>
+                <div class="card-meta"><p class="price">[PRIX] €</p></div>
               </div>
             </li>
             <!-- à confirmer -->
             <li class="card" data-optional>
               <figure class="ph detail" data-ph="[PHOTO_DETAIL_5] · 1080×720">
-                <img src="[PHOTO_DETAIL_5].jpg" width="1080" height="720" loading="lazy" alt="Main de coiffeur tenant une paire de ciseaux, sur fond sombre.">
+                <img src="[PHOTO_DETAIL_5].jpg" width="1080" height="720" loading="lazy" alt="Enfant aux cheveux bouclés pendant sa coupe, avec son coiffeur à l'arrière-plan.">
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">05</span><h3>Coupe enfant</h3></div>
-                <div class="card-meta"><p class="dur">[DURÉE]</p><p class="price">[PRIX] €</p></div>
+                <div class="card-meta"><p class="price">[PRIX] €</p></div>
               </div>
             </li>
           </ul>
-          <div class="menu-cta"><a class="btn btn--cream" href="[LIEN DE RÉSERVATION]">Réserver un créneau</a></div>
+          <div class="menu-cta">
+            <a class="btn btn--cream" href="[LIEN DE RÉSERVATION]">Réserver un créneau</a>
+            <a class="btn btn--cream" href="creations.html">Voir mes créations</a>
+          </div>
         </div>
       </div>
     </div>
@@ -904,9 +922,10 @@
         <h2 class="display" id="hours-title"><span class="ln">Nos </span><span class="ln"><em>Horaires</em></span></h2>
         <address class="addr" style="font-style:normal">
           HBS Coiffures<br>
-          [RUE ET NUMÉRO], [CODE POSTAL] [VILLE]<br>
-          <a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a><br>
-          <a class="go" href="[LIEN GOOGLE MAPS]">Voir l’itinéraire</a>
+          Rue du Pont 6, 5300 Andenne<br>
+          <a href="tel:+32493916130">0493 91 61 30</a><br>
+          <a href="mailto:new_look2016@hotmail.com">new_look2016@hotmail.com</a><br>
+          <a class="go" href="https://www.google.com/maps/search/?api=1&amp;query=Rue+du+Pont+6,+5300+Andenne">Voir l’itinéraire</a>
         </address>
         <figure class="ph interior" data-ph="[PHOTO_INTERIOR] · 2400×1600">
           <img src="[PHOTO_INTERIOR].jpg" width="1600" height="1063" loading="lazy" alt="Salon de barbier aux murs de briques avec trois fauteuils en cuir, photo d'illustration.">
@@ -966,20 +985,21 @@
     <h2 class="display"><span class="ln">Votre prochaine coupe </span><span class="ln">commence <em>ici.</em></span></h2>
     <div class="foot-btns">
       <a class="btn btn--gold" href="[LIEN DE RÉSERVATION]">Réserver</a>
-      <a class="btn btn--line" href="tel:[TÉLÉPHONE]">Appeler</a>
+      <a class="btn btn--line" href="tel:+32493916130">Appeler</a>
     </div>
   </div>
   <div class="foot-bar">
     <strong class="foot-brand"><img src="logo-hb.jpg" width="480" height="385" loading="lazy" alt="Blason HB Coiffure For Men">HBS Coiffures</strong>
-    <span>[RUE ET NUMÉRO], [CODE POSTAL] [VILLE]</span>
+    <span>Rue du Pont 6, 5300 Andenne</span>
     <span>Mar–Sam 9h–19h · Dim 9h–18h · Lun fermé</span>
-    <span>© [ANNÉE] HBS Coiffures</span>
+    <a href="creations.html">Mes créations</a>
+    <span>© 2026 HBS Coiffures</span>
   </div>
 </footer>
 
 <nav class="mbar" aria-label="Actions rapides">
   <a href="[LIEN DE RÉSERVATION]">Réserver</a>
-  <a href="tel:[TÉLÉPHONE]">Appeler</a>
+  <a href="tel:+32493916130">Appeler</a>
 </nav>
 
 <div class="probe" id="probe" aria-hidden="true"></div>
