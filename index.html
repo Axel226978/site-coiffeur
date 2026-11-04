@@ -15,7 +15,7 @@
   "@context": "https://schema.org",
   "@type": "HairSalon",
   "name": "HBS Coiffures",
-  "image": "[PHOTO_RÉELLE_DU_SALON].jpg",
+  "image": "[PHOTO_INTERIOR].jpg",
   "telephone": "+32 493 91 61 30",
   "email": "new_look2016@hotmail.com",
   "address": {
@@ -50,9 +50,10 @@
     function mark(state) {
       return function (e) {
         var t = e.target;
-        if (t && t.tagName === 'IMG' && t.parentElement && t.parentElement.classList.contains('ph')) {
-          t.parentElement.classList.remove('is-loaded', 'is-missing');
-          t.parentElement.classList.add(state);
+        var box = t && t.tagName === 'IMG' && t.closest('.ph');
+        if (box) {
+          box.classList.remove('is-loaded', 'is-missing');
+          box.classList.add(state);
         }
       };
     }
@@ -121,6 +122,7 @@
     overflow: hidden;
     background: var(--warm);
   }
+  .ph picture { display: contents; }
   .ph img { width: 100%; height: 100%; object-fit: cover; }
   .ph.is-missing img { visibility: hidden; }
   .ph::before {
@@ -256,9 +258,11 @@
     /* 104.5% tall: at scale 1 the −4% shift would otherwise bare the bottom edge */
     height: 104.5%;
     bottom: auto;
-    transform: translateY(calc(var(--z) * -4%)) scale(calc(1.35 - .35 * var(--z)));
+    transform: translateY(calc(var(--z) * -4%)) scale(calc(1.06 - .06 * var(--z)));
     will-change: transform;
   }
+  /* Keep the head in frame when a tall screen crops the width */
+  .stage .photo-chair img { object-position: 45% 50%; }
   .stage .photo-chair {
     clip-path: inset(0 calc((1 - var(--w)) * 50%) 0 calc((1 - var(--w)) * 50%));
     will-change: clip-path;
@@ -526,15 +530,6 @@
   .addr a { display: inline-block; padding: 4px 0; }
   .addr .go { font-weight: 700; text-underline-offset: 4px; }
   .interior { margin-top: 32px; aspect-ratio: 3 / 2; }
-  .interior figcaption {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 4px 10px;
-    background: rgba(11, 10, 9, .8);
-    color: var(--cream);
-    font-size: 11px;
-  }
   .day-row {
     display: flex;
     flex-wrap: wrap;
@@ -711,6 +706,9 @@
     .rev-head { grid-template-columns: 1fr; gap: 14px; }
     .rev { grid-template-columns: 1fr; gap: 14px; padding: 32px 0; }
 
+    /* Scrolling text must not run through the header on a narrow screen */
+    .site-head { background: rgba(11, 10, 9, .88); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+    .site-head::before { display: none; }
     .brand { gap: 10px; letter-spacing: .2em; font-size: 11px; }
     .foot-bar { flex-direction: column; padding-bottom: 76px; }
 
@@ -752,11 +750,8 @@
 
 <body>
 
-<!-- Photos d'illustration, licence Unsplash (unsplash.com/license), pas celles du salon :
-     HERO Hai Phung (m4Pd_e-4zKs) · CHAIR Redd Francisco (BBGyxhtPpC0) · INTERIOR Nathon Oski (EW_rqoSdDes)
-     DETAIL_1 Agustin Fernandez (6AhYcZMcKZI) · DETAIL_2 Mr Shave (4k60yfGy7fU) · DETAIL_3 Michael DeMoya (Q82AM6BWBPM)
-     DETAIL_4 Amritpal Singh (wE-GAKR9WaY) · DETAIL_5 John Rodriguez (mn8-zTvax-4)
-     Les photos fournies par le salon sont dans photos-salon/. -->
+<!-- Les photos viennent de la page Facebook du salon (voir aussi creations/).
+     Publier uniquement avec l'accord du salon et des clients, et des parents pour un enfant. -->
 <!-- Le blason complet (logo-hb.jpg) s'affiche dans l'en-tête et le pied de page.
      Le symbole #hb est le monogramme du logo, décalqué en contours pour pouvoir se dessiner au trait. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -787,11 +782,11 @@
 
   <div class="track" id="track">
     <div class="stage" id="stage">
-      <figure class="ph photo-hero" data-ph="[PHOTO_HERO] · 2400×1600">
-        <img src="[PHOTO_HERO].jpg" width="2400" height="1600" alt="Les mains d'un barbier passent la tondeuse sur la nuque d'un client vu de dos, sur fond sombre.">
+      <figure class="ph photo-hero" data-ph="[PHOTO_HERO] · 1620×1080">
+        <picture><source media="(max-width: 609px), (orientation: portrait)" srcset="[PHOTO_HERO_PORTRAIT].jpg"><img src="[PHOTO_HERO].jpg" width="1620" height="1080" alt="Client de profil : cheveux argentés coiffés, dégradé net et barbe taillée."></picture>
       </figure>
-      <figure class="ph photo-chair" data-ph="[PHOTO_CHAIR] · 2400×1600">
-        <img src="[PHOTO_CHAIR].jpg" width="2400" height="1600" alt="Fauteuil de barbier en cuir capitonné et miroir, dans un salon sombre.">
+      <figure class="ph photo-chair" data-ph="[PHOTO_CHAIR] · 1606×1071">
+        <img src="[PHOTO_CHAIR].jpg" width="1606" height="1071" alt="Vue d'ensemble du salon : accueil, fauteuils de barbier rouges et coin d'attente.">
       </figure>
       <div class="mask" aria-hidden="true">
         <i class="m-a"></i><i class="m-b"></i>
@@ -858,8 +853,8 @@
         <div class="menu-win" id="menuWin">
           <ul class="menu-row" id="menuRow">
             <li class="card">
-              <figure class="ph detail" data-ph="[PHOTO_DETAIL_1] · 1080×720">
-                <img src="[PHOTO_DETAIL_1].jpg" width="1080" height="720" loading="lazy" alt="Barbier passant la tondeuse sur un dégradé, client vu de dos.">
+              <figure class="ph detail" data-ph="[PHOTO_DETAIL_1] · 1440×1200">
+                <img src="[PHOTO_DETAIL_1].jpg" width="1440" height="1200" loading="lazy" alt="Coupe homme coiffée en arrière, raie tracée et dégradé net.">
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">01</span><h3>Coupe homme</h3></div>
@@ -868,8 +863,8 @@
             </li>
             <!-- à confirmer -->
             <li class="card" data-optional>
-              <figure class="ph detail" data-ph="[PHOTO_DETAIL_2] · 1080×720">
-                <img src="[PHOTO_DETAIL_2].jpg" width="1080" height="720" loading="lazy" alt="Barbe taillée aux ciseaux, photo cadrée sur la mâchoire.">
+              <figure class="ph detail" data-ph="[PHOTO_DETAIL_2] · 1072×893">
+                <img src="[PHOTO_DETAIL_2].jpg" width="1072" height="893" loading="lazy" alt="Barbier dessinant le contour d'une barbe au rasoir.">
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">02</span><h3>Taille de barbe</h3></div>
@@ -878,8 +873,8 @@
             </li>
             <!-- à confirmer -->
             <li class="card" data-optional>
-              <figure class="ph detail" data-ph="[PHOTO_DETAIL_3] · 1080×720">
-                <img src="[PHOTO_DETAIL_3].jpg" width="1080" height="720" loading="lazy" alt="Barbier passant la tondeuse sur un dégradé, client à la barbe taillée.">
+              <figure class="ph detail" data-ph="[PHOTO_DETAIL_3] · 1440×1200">
+                <img src="[PHOTO_DETAIL_3].jpg" width="1440" height="1200" loading="lazy" alt="Client de profil : ligne tracée, dégradé et barbe taillée.">
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">03</span><h3>Coupe + barbe</h3></div>
@@ -888,8 +883,8 @@
             </li>
             <!-- à confirmer -->
             <li class="card" data-optional>
-              <figure class="ph detail" data-ph="[PHOTO_DETAIL_4] · 1080×720">
-                <img src="[PHOTO_DETAIL_4].jpg" width="1080" height="720" loading="lazy" alt="Dégradé terminé et motif tracé sur le côté, client vu de dos.">
+              <figure class="ph detail" data-ph="[PHOTO_DETAIL_4] · 864×720">
+                <img src="[PHOTO_DETAIL_4].jpg" width="864" height="720" loading="lazy" alt="Dégradé avec motif tracé, client au fauteuil dans le salon.">
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">04</span><h3>Dégradé / fade</h3></div>
@@ -898,8 +893,8 @@
             </li>
             <!-- à confirmer -->
             <li class="card" data-optional>
-              <figure class="ph detail" data-ph="[PHOTO_DETAIL_5] · 1080×720">
-                <img src="[PHOTO_DETAIL_5].jpg" width="1080" height="720" loading="lazy" alt="Enfant aux cheveux bouclés pendant sa coupe, avec son coiffeur à l'arrière-plan.">
+              <figure class="ph detail" data-ph="[PHOTO_DETAIL_5] · 528×440">
+                <img src="[PHOTO_DETAIL_5].jpg" width="528" height="440" loading="lazy" alt="Jeune garçon au salon après sa coupe.">
               </figure>
               <div class="card-body">
                 <div class="card-title"><span class="num" aria-hidden="true">05</span><h3>Coupe enfant</h3></div>
@@ -927,9 +922,8 @@
           <a href="mailto:new_look2016@hotmail.com">new_look2016@hotmail.com</a><br>
           <a class="go" href="https://www.google.com/maps/search/?api=1&amp;query=Rue+du+Pont+6,+5300+Andenne">Voir l’itinéraire</a>
         </address>
-        <figure class="ph interior" data-ph="[PHOTO_INTERIOR] · 2400×1600">
-          <img src="[PHOTO_INTERIOR].jpg" width="1600" height="1063" loading="lazy" alt="Salon de barbier aux murs de briques avec trois fauteuils en cuir, photo d'illustration.">
-          <figcaption>Photo d’illustration</figcaption>
+        <figure class="ph interior" data-ph="[PHOTO_INTERIOR] · 960×640">
+          <img src="[PHOTO_INTERIOR].jpg" width="960" height="640" loading="lazy" alt="L'espace coiffure du salon, avec ses fauteuils noirs et ses grands miroirs.">
         </figure>
       </div>
       <dl id="hoursList">
