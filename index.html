@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HBS Coiffures — Coiffeur barbier homme à [VILLE]</title>
+<meta name="description" content="Coupe homme, dégradé et barbe, au millimètre, à [VILLE]. Ouvert du mardi au dimanche. Réservez votre créneau chez HBS Coiffures.">
+<meta name="theme-color" content="#0B0A09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;700&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "HBS Coiffures",
+  "image": "[PHOTO_RÉELLE_DU_SALON].jpg",
+  "telephone": "[TÉLÉPHONE]",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[RUE ET NUMÉRO]",
+    "postalCode": "[CODE POSTAL]",
+    "addressLocality": "[VILLE]"
+  },
+  "hasMap": "[LIEN GOOGLE MAPS]",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ]
+}
+</script>
+
+<script>
+  /* Placed before any <img> is parsed, so no load or error event is missed.
+     A photo that is still missing keeps its dark fill, gold frame and label. */
+  (function () {
+    function mark(state) {
+      return function (e) {
+        var t = e.target;
+        if (t && t.tagName === 'IMG' && t.parentElement && t.parentElement.classList.contains('ph')) {
+          t.parentElement.classList.remove('is-loaded', 'is-missing');
+          t.parentElement.classList.add(state);
+        }
+      };
+    }
+    /* On document, not window: image load events never reach window */
+    document.addEventListener('load', mark('is-loaded'), true);
+    document.addEventListener('error', mark('is-missing'), true);
+  })();
+</script>
+
+<style>
+  :root {
+    --ink: #0B0A09;
+    --warm: #141210;
+    --gold: #C9A45C;
+    --gold-2: #E6C98A;
+    --gold-rule: rgba(201, 164, 92, .55);
+    --cream: #F3EDE2;
+    --body: rgba(243, 237, 226, .78);
+    --paper: #EFE8DC;
+    --paper-ink: #16130F;
+    /* AA on paper: brand gold (1.9:1) and #8F877C (2.9:1) are too light on #EFE8DC. */
+    --gold-on-paper: #8A6A2A;
+    --grey-on-paper: #6E675D;
+    --rule-on-paper: rgba(22, 19, 15, .16);
+
+    --display: "Cormorant Garamond", "Times New Roman", serif;
+    --ui: "Manrope", "Segoe UI", system-ui, sans-serif;
+
+    /* Design frame 1280×800 */
+    --u: min(calc(100vh / 800), calc(100vw / 716));
+    --mono-h: 420;
+    --mono-sw: 1.2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--cream);
+    font: 400 16px/1.5 var(--ui);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  a { color: inherit; }
+  img { display: block; }
+  :focus-visible { outline: 2px solid var(--gold-2); outline-offset: 3px; border-radius: 2px; }
+  .on-paper :focus-visible { outline-color: var(--gold-on-paper); }
+
+  /* Static film grain */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: .04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- Photo placeholders ---------- */
+  .ph {
+    position: relative;
+    overflow: hidden;
+    background: var(--warm);
+  }
+  .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .ph.is-missing img { visibility: hidden; }
+  .ph::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid var(--gold-rule);
+    pointer-events: none;
+  }
+  .ph.is-loaded::before { display: none; }
+  .ph.is-missing::after {
+    content: attr(data-ph);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+    font: 700 11px/1.5 var(--ui);
+    letter-spacing: .16em;
+    color: var(--gold);
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 28px;
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    font: 700 12px/1 var(--ui);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color .2s, color .2s, border-color .2s;
+  }
+  .btn--gold { background: var(--gold); color: var(--ink); }
+  .btn--gold:hover { background: var(--gold-2); border-color: var(--gold-2); }
+  .btn--line { background: transparent; color: var(--gold-2); }
+  .btn--line:hover { background: var(--gold); color: var(--ink); }
+  .btn--cream { background: var(--cream); color: var(--paper-ink); border-color: var(--paper-ink); }
+  .btn--cream:hover { background: var(--paper-ink); color: var(--cream); }
+
+  /* ---------- Header ---------- */
+  .site-head {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 20;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 clamp(16px, 3vw, 40px);
+    transition: background-color .3s;
+  }
+  .site-head::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 -32px;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+  }
+  .is-past .site-head::before { display: none; }
+  .is-past .site-head {
+    background: rgba(11, 10, 9, .8);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    text-decoration: none;
+    font: 700 12px/1 var(--ui);
+    letter-spacing: .3em;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .7);
+  }
+  .brand span { text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 2px 0; }
+  /* Round black badge: the logo's black background stays clean over any photo */
+  .brand img {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    padding: 4px;
+    object-fit: contain;
+    background: #000;
+    border: 1px solid var(--gold-rule);
+    border-radius: 50%;
+  }
+  .site-head .btn { min-height: 40px; padding: 0 20px; font-size: 11px; color: var(--cream); flex: none; }
+  .site-head .btn:hover { color: var(--ink); }
+
+  /* ---------- Track + stage ---------- */
+  .track { position: relative; z-index: 1; height: 500vh; /* replaced by JS */ }
+  .stage {
+    --p: 0;
+    --intro: 0;
+    --draw: max(var(--intro), clamp(0, calc(var(--p) / .18), 1));
+    --s: clamp(0, calc((var(--p) - .10) / .28), 1);
+    --z: clamp(0, calc((var(--p) - .30) / .40), 1);
+    --w: clamp(0, calc((var(--p) - .62) / .16), 1);
+    --d: clamp(0, calc((var(--p) - .78) / .22), 1);
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    height: 100vh;
+    height: 100lvh;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .stage > * { position: absolute; inset: 0; }
+
+  .stage .photo-hero {
+    /* 104.5% tall: at scale 1 the −4% shift would otherwise bare the bottom edge */
+    height: 104.5%;
+    bottom: auto;
+    transform: translateY(calc(var(--z) * -4%)) scale(calc(1.35 - .35 * var(--z)));
+    will-change: transform;
+  }
+  .stage .photo-chair {
+    clip-path: inset(0 calc((1 - var(--w)) * 50%) 0 calc((1 - var(--w)) * 50%));
+    will-change: clip-path;
+  }
+  /* In the stage the label sits off-centre, clear of the monogram and the headline */
+  .stage .ph::before { inset: 20px; }
+  .stage .photo-hero.is-missing::after { left: 21%; top: 72%; width: auto; transform: none; }
+  .stage .photo-chair.is-missing::after { left: auto; right: 21%; top: 26%; width: auto; transform: none; }
+
+  /* Razor line: two black halves clipped back from the centre */
+  .mask i { position: absolute; left: 0; right: 0; background: var(--ink); }
+  .mask .m-a { top: 0; height: calc(50% + .5px); clip-path: inset(0 0 calc(var(--s) * 100%) 0); }
+  .mask .m-b { bottom: 0; height: calc(50% + .5px); clip-path: inset(calc(var(--s) * 100%) 0 0 0); }
+  .mask .edge {
+    top: 50%;
+    height: 1px;
+    background: var(--gold-2);
+    opacity: clamp(0, min(calc(var(--s) * 40), calc((1 - var(--s)) * 40)), 1);
+  }
+  .mask .e-a { transform: translateY(calc(var(--s) * -50vh)); }
+  .mask .e-b { transform: translateY(calc(var(--s) * 50vh)); }
+
+  .stage .darken { background: #000; opacity: calc(var(--d) * .7); }
+
+  .stage .monogram {
+    inset: auto;
+    left: 50%;
+    top: 50%;
+    height: calc(var(--mono-h) * var(--u));
+    width: calc(var(--mono-h) * var(--u) * 400 / 420);
+    transform: translate(-50%, -50%);
+    /* Fills as the drawing ends; fades as the slit opens, leaving the outline as a watermark */
+    fill: var(--cream);
+    fill-opacity: calc(clamp(0, calc((var(--draw) - .7) / .3), 1) * (1 - var(--s)));
+    stroke: var(--gold-2);
+    stroke-width: var(--mono-sw);
+    stroke-dasharray: 1px 1px;
+    stroke-dashoffset: calc((1 - var(--draw)) * 1px);
+    opacity: calc(1 - .82 * var(--s));
+  }
+  .stage .axis {
+    inset: 0 auto 0 50%;
+    width: 1px;
+    margin-left: -.5px;
+    background: var(--gold-rule);
+    transform: scaleY(var(--draw));
+    opacity: calc(1 - var(--d));
+  }
+  .stage .vignette {
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, .45) 100%);
+  }
+
+  /* ---------- Scrolling blocks ---------- */
+  .content { position: absolute; inset: 0; z-index: 1; }
+  .intro {
+    position: absolute;
+    top: calc(900 / 8 * 1vh);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(calc(1280 * var(--u)), 100%);
+    text-align: center;
+  }
+  .eyebrow {
+    display: block;
+    font: 700 max(calc(7.4 * var(--u)), 10px)/1.4 var(--ui);
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .9);
+  }
+  .intro h1 {
+    margin-top: calc(14 * var(--u));
+    font: 600 calc(64 * var(--u))/calc(64 * var(--u)) var(--display);
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-shadow: 0 calc(10 * var(--u)) calc(30 * var(--u)) rgba(0, 0, 0, .55);
+  }
+  .intro h1 .ln { display: block; white-space: nowrap; }
+  .accent-gold { font-style: italic; font-weight: 500; color: var(--gold); }
+  .intro h1 .accent-gold { text-transform: none; }
+  .intro .sub {
+    margin-top: calc(16 * var(--u));
+    font-size: max(calc(13 * var(--u)), 13px);
+    color: var(--body);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, .95), 0 0 2px rgba(0, 0, 0, .8);
+  }
+
+  /* Feathered backing: keeps text AA over a bright photo, invisible on the black stage */
+  .intro::before, .svc--l::before, .svc--r::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(11, 10, 9, .74);
+    box-shadow: 0 0 calc(60 * var(--u)) calc(16 * var(--u)) rgba(11, 10, 9, .74);
+    border-radius: calc(30 * var(--u));
+  }
+  .intro::before { inset: 0 auto 0 50%; width: calc(380 * var(--u)); max-width: 86%; transform: translateX(-50%); }
+  .svc--l::before, .svc--r::before { inset: 0; }
+
+  .svc {
+    isolation: isolate;
+    position: absolute;
+    top: calc(var(--y) / 8 * 1vh);
+    width: calc(300 * var(--u));
+    text-shadow: 0 1px 12px rgba(0, 0, 0, .95), 0 0 3px rgba(0, 0, 0, .7);
+  }
+  .svc--l { right: calc(50% + var(--gap) * var(--u)); text-align: right; }
+  .svc--r { left: calc(50% + var(--gap) * var(--u)); text-align: left; }
+  .svc--c {
+    left: 50%;
+    margin-left: calc(-170 * var(--u));
+    width: calc(340 * var(--u));
+    padding: calc(22 * var(--u)) calc(20 * var(--u));
+    text-align: center;
+    background: var(--ink);
+    border: 1px solid var(--gold-rule);
+  }
+  .svc .icon {
+    display: block;
+    width: calc(30 * var(--u));
+    height: calc(30 * var(--u));
+    margin-bottom: calc(26 * var(--u));
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .svc--l .icon { margin-left: auto; }
+  .svc--c .icon { margin-inline: auto; margin-bottom: calc(16 * var(--u)); }
+  .svc .tick {
+    position: absolute;
+    top: calc(15 * var(--u));
+    width: calc(24 * var(--u));
+    height: 1px;
+    background: var(--gold-rule);
+  }
+  .svc--l .tick { right: calc(var(--gap) * var(--u) * -1); }
+  .svc--r .tick { left: calc(var(--gap) * var(--u) * -1); }
+  .svc h3 {
+    font: 700 calc(19.6 * var(--u))/calc(20 * var(--u)) var(--ui);
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .svc p {
+    margin-top: calc(10 * var(--u));
+    font-size: calc(12.3 * var(--u));
+    line-height: calc(15.4 * var(--u));
+    color: var(--body);
+  }
+  .svc .ln { display: block; }
+
+  /* ---------- Paper sections ---------- */
+  .on-paper { color: var(--paper-ink); }
+  .display {
+    font-family: var(--display);
+    font-weight: 600;
+    letter-spacing: -.01em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .display .ln { display: block; }
+  .display em { font-style: italic; font-weight: 500; }
+
+  /* ---------- Carte ---------- */
+  .menu { position: relative; z-index: 2; margin-top: -30vh; }
+  .menu-fade { height: 30vh; background: linear-gradient(to bottom, rgba(239, 232, 220, 0), var(--paper)); }
+  .menu-pin { background: var(--paper); }
+  .menu-panel {
+    --card-h: min(480px, calc(100vh - 196px));
+    --card-w: calc(var(--card-h) * .75);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: clamp(28px, 4vw, 64px);
+    align-items: center;
+    padding: 80px 0 24px clamp(22px, 4vw, 64px);
+  }
+  .menu h2 { font-size: clamp(40px, 6vw, 88px); }
+  .menu h2 em { color: var(--gold-on-paper); }
+  .menu-win { min-width: 0; overflow: hidden; }
+  .menu-row {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    padding-right: clamp(22px, 4vw, 64px);
+    will-change: transform;
+  }
+  .menu-row > li { flex: none; width: var(--card-w); height: var(--card-h); }
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    background: var(--paper-ink);
+    color: var(--cream);
+    border: 1px solid var(--gold);
+  }
+  .card .num, .card .price, .day-row dd { font-variant-numeric: lining-nums; }
+  .card .num { font-family: var(--display); font-weight: 500; font-size: clamp(56px, 11vh, 88px); line-height: 1; color: var(--gold); }
+  .card h3 {
+    margin-top: 20px;
+    font: 700 16px/1.3 var(--ui);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .card .dur { margin-top: 8px; font-size: 14px; color: var(--body); }
+  .card .price { margin-top: auto; font-family: var(--display); font-weight: 600; font-size: 34px; line-height: 1; color: var(--gold-2); }
+  .detail img { position: absolute; top: 0; left: -12%; width: 124%; max-width: none; will-change: transform; }
+  .menu-cta { margin-top: 20px; }
+
+  /* Vertical list: portrait and reduced motion */
+  .m-list .menu-panel {
+    position: static;
+    height: auto;
+    display: block;
+    overflow: visible;
+    padding: 40px clamp(22px, 4vw, 64px) 56px;
+  }
+  .m-list .menu h2 { margin-bottom: 32px; }
+  .m-list .menu-row { flex-wrap: wrap; width: auto; padding-right: 0; will-change: auto; }
+  .m-list .menu-win { overflow: visible; }
+  .m-list .detail img { position: static; left: 0; width: 100%; will-change: auto; }
+  .m-list .menu-cta { margin-top: 32px; }
+
+  /* ---------- Horaires + avis ---------- */
+  .paper { position: relative; z-index: 2; background: var(--paper); }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .hours {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    padding: 120px clamp(22px, 4vw, 40px);
+  }
+  .hours h2 { font-size: clamp(40px, 5vw, 72px); }
+  .addr { margin-top: 32px; font-size: 15px; line-height: 1.7; }
+  .addr a { display: inline-block; padding: 4px 0; }
+  .addr .go { font-weight: 700; text-underline-offset: 4px; }
+  .interior { margin-top: 32px; aspect-ratio: 3 / 2; }
+  .interior figcaption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 4px 10px;
+    background: rgba(11, 10, 9, .8);
+    color: var(--cream);
+    font-size: 11px;
+  }
+  .day-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px 16px;
+    min-height: 62px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule-on-paper);
+  }
+  .day-row dt {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    font: 700 13px/1.4 var(--ui);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .day-row dd { margin-left: auto; font-family: var(--display); font-weight: 500; font-size: 22px; line-height: 1.2; }
+  .day-row.closed dd { color: var(--grey-on-paper); }
+  .day-row.today {
+    margin-inline: -14px;
+    padding-inline: 14px;
+    background: var(--gold);
+    border-bottom-color: transparent;
+  }
+  .day-row.today dd { color: var(--paper-ink); }
+  .tag {
+    padding: 3px 8px;
+    border: 1px solid var(--paper-ink);
+    border-radius: 999px;
+    font-size: 10px;
+    letter-spacing: .08em;
+    white-space: nowrap;
+  }
+  .status { font: 400 12px/1.4 var(--ui); letter-spacing: 0; text-transform: none; white-space: nowrap; }
+
+  .reviews { padding: 0 clamp(22px, 4vw, 40px) 120px; }
+  .rev-head {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 32px;
+    align-items: end;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--rule-on-paper);
+  }
+  .rev-head h2 { font-size: clamp(34px, 4.4vw, 60px); }
+  .rev-head .ln-grey { color: var(--grey-on-paper); }
+  .rev-head p { font-size: 13px; color: rgba(22, 19, 15, .7); }
+  .rev {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule-on-paper);
+  }
+  .rev .who { font: 700 13px/1.4 var(--ui); text-transform: uppercase; letter-spacing: .06em; }
+  .rev .src { margin-top: 6px; font-size: 12px; color: rgba(22, 19, 15, .6); }
+  .rev .stars { display: block; width: 70px; height: 14px; margin-top: 6px; fill: var(--gold-on-paper); }
+  .rev blockquote {
+    margin: 0;
+    max-width: 680px;
+    font: italic 500 clamp(19px, 1.8vw, 24px)/1.4 var(--display);
+  }
+
+  /* ---------- Footer ---------- */
+  .foot {
+    position: relative;
+    z-index: 2;
+    background: var(--ink);
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .foot-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 64px 22px;
+  }
+  .foot-mono {
+    width: 152px;
+    height: 160px;
+    fill: var(--cream);
+    fill-opacity: 0;
+    stroke: var(--gold-2);
+    stroke-width: 3;
+    stroke-dasharray: 1px 1px;
+    stroke-dashoffset: 1px;
+    transition: stroke-dashoffset 2.4s cubic-bezier(.45, .05, .55, .95), fill-opacity .8s ease 1.9s;
+  }
+  .foot-mono.is-drawn { stroke-dashoffset: 0; fill-opacity: 1; }
+  .foot h2 {
+    margin-top: 28px;
+    font-size: clamp(30px, 4.6vw, 60px);
+    color: var(--cream);
+    text-shadow: 0 6px 24px rgba(0, 0, 0, .55);
+  }
+  .foot h2 em { color: var(--gold); }
+  .foot-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 36px; }
+  .foot-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 32px;
+    padding: 20px clamp(22px, 4vw, 40px);
+    border-top: 1px solid var(--gold-rule);
+    font-size: 12px;
+    color: var(--body);
+  }
+  .foot-bar { align-items: center; }
+  .foot-bar strong { color: var(--cream); }
+  .foot-brand { display: flex; align-items: center; gap: 12px; }
+  .foot-brand img { width: 72px; height: 72px; padding: 6px; object-fit: contain; background: #000; border: 1px solid var(--gold-rule); border-radius: 50%; }
+
+  .mbar { display: none; }
+
+  .probe { position: absolute; width: calc(100 * var(--u)); height: 0; visibility: hidden; }
+
+  /* ---------- Reduced motion: nothing is scrubbed ---------- */
+  .rm .stage { --draw: 1; --s: 1; --z: 0; --w: 0; --d: 0; }
+  .rm .stage .photo-hero { height: 100%; transform: none; }
+  .rm .foot-mono { transition: none; stroke-dashoffset: 0; fill-opacity: 1; }
+  .rm .btn, .rm .site-head { transition: none; }
+
+  /* ---------- Portrait ---------- */
+  @media (max-width: 609px), (orientation: portrait) {
+    :root { --u: min(calc(100vw / 390), 1.6px); --mono-h: 260; --mono-sw: 1.94; }
+
+    /* The razor slit runs along the axis and opens sideways */
+    .mask .m-a { top: 0; bottom: 0; left: 0; right: auto; width: calc(50% + .5px); height: auto; clip-path: inset(0 calc(var(--s) * 100%) 0 0); }
+    .mask .m-b { top: 0; bottom: 0; right: 0; left: auto; width: calc(50% + .5px); height: auto; clip-path: inset(0 0 0 calc(var(--s) * 100%)); }
+    .mask .edge { top: 0; bottom: 0; left: 50%; right: auto; width: 1px; height: auto; }
+    .mask .e-a { transform: translateX(calc(var(--s) * -50vw)); }
+    .mask .e-b { transform: translateX(calc(var(--s) * 50vw)); }
+
+    .stage .photo-hero.is-missing::after { left: 50%; top: 76%; width: 70%; transform: translateX(-50%); text-align: center; }
+    .stage .photo-chair.is-missing::after { left: 50%; right: auto; top: 24%; width: 70%; transform: translateX(-50%); text-align: center; }
+
+    .content { display: flex; flex-direction: column; align-items: center; padding: 112vh 22px 0; height: auto; bottom: auto; }
+    .intro { top: auto; left: auto; transform: none; width: 100%; }
+    .intro h1 { font-size: clamp(38px, calc(52 * var(--u)), 76px); line-height: 1; }
+    .intro h1 .ln { white-space: normal; }
+
+    .svc, .svc--l, .svc--r, .svc--c {
+      position: static;
+      width: min(100%, 420px);
+      margin: 16vh 0 0;
+      padding: 24px 20px;
+      text-align: center;
+      background: var(--ink);
+      border: 1px solid var(--gold-rule);
+    }
+    .svc:first-of-type { margin-top: 24vh; }
+    .svc .tick, .svc--l::before, .svc--r::before { display: none; }
+    .intro { position: relative; z-index: 0; }
+    .intro::before { max-width: 100%; width: 100%; }
+    .svc .icon, .svc--l .icon { width: 30px; height: 30px; margin: 0 auto 16px; }
+    .svc .ln { display: inline; }
+    .svc h3 { font-size: max(calc(19.6 * var(--u)), 19px); line-height: 1.15; }
+    .svc p { font-size: max(calc(12.3 * var(--u)), 14px); line-height: 1.45; }
+
+    .m-list .menu-row { flex-direction: column; flex-wrap: nowrap; }
+    .m-list .menu-row > li { width: 100%; height: auto; }
+    .m-list .card { min-height: 300px; }
+    .m-list .detail { aspect-ratio: 3 / 4; }
+    .m-list .detail img { height: 100%; }
+
+    .hours { grid-template-columns: 1fr; gap: 18px; padding: 72px 22px; }
+    .day-row.today { margin-inline: -10px; padding-inline: 10px; }
+    .reviews { padding: 0 22px 72px; }
+    .rev-head { grid-template-columns: 1fr; gap: 14px; }
+    .rev { grid-template-columns: 1fr; gap: 14px; padding: 32px 0; }
+
+    .brand { gap: 10px; letter-spacing: .2em; font-size: 11px; }
+    .foot-bar { flex-direction: column; padding-bottom: 76px; }
+
+    .mbar {
+      position: fixed;
+      inset: auto 0 0;
+      z-index: 20;
+      height: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--ink);
+      border-top: 1px solid var(--gold-rule);
+      transform: translateY(100%);
+      visibility: hidden;
+      transition: transform .25s, visibility .25s;
+    }
+    .is-past .mbar { transform: none; visibility: visible; }
+    .mbar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 700 12px/1 var(--ui);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      outline-offset: -3px;
+    }
+    .mbar a:first-child { background: var(--gold); color: var(--ink); }
+    .mbar a:last-child { color: var(--gold-2); }
+    .rm .mbar { transition: none; }
+  }
+</style>
+<noscript><style>
+  .menu-win { overflow-x: auto; }
+  .foot-mono { stroke-dashoffset: 0; fill-opacity: 1; }
+  .stage { --p: 0; --intro: 1; }
+</style></noscript>
+</head>
+
+<body>
+
+<!-- Photos d'illustration, licence Unsplash (unsplash.com/license), pas celles du salon :
+     HERO Hai Phung (m4Pd_e-4zKs) · CHAIR Redd Francisco (BBGyxhtPpC0) · INTERIOR Nathon Oski (EW_rqoSdDes)
+     DETAIL_1 Amritpal Singh (wE-GAKR9WaY) · DETAIL_2 Mr Shave (4k60yfGy7fU) · DETAIL_3 Agustin Fernandez (6AhYcZMcKZI)
+     Les photos fournies par le salon sont dans photos-salon/. -->
+<!-- Le blason complet (logo-hb.jpg) s'affiche dans l'en-tête et le pied de page.
+     Le symbole #hb est le monogramme du logo, décalqué en contours pour pouvoir se dessiner au trait. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="hb" viewBox="5 0 400 420">
+    <path stroke="none" fill-rule="evenodd" d="M37.4 193.4L36.7 194.8L34.5 198.2L34.3 199.1L34.2 200.9L34.5 201.8L37.4 204.0L38.3 205.2L39.4 207.2L40.0 209.0L40.7 215.3L41.0 229.2L41.2 231.7L41.2 319.6L41.0 323.2L41.2 327.3L41.0 330.0L41.0 343.2L40.7 347.7L40.3 349.7L40.0 354.2L39.6 355.8L38.6 358.5L36.4 361.6L34.7 362.7L30.4 364.1L23.4 365.3L20.7 366.0L19.6 366.7L19.0 367.5L18.8 368.6L19.1 369.4L20.3 370.1L22.3 370.4L35.8 370.6L68.9 370.4L71.8 370.6L83.0 370.7L90.2 370.2L91.1 369.9L91.8 369.3L92.1 368.4L91.9 367.3L91.6 366.7L90.9 366.2L88.0 365.3L82.1 364.6L75.4 362.6L74.3 362.1L73.3 361.2L71.6 359.0L69.8 354.7L69.5 352.4L69.5 288.4L69.6 287.2L70.1 286.1L70.7 285.2L71.3 284.8L72.9 284.5L155.4 284.5L158.1 284.3L163.7 284.6L164.4 284.9L165.0 285.5L165.5 286.8L165.8 291.5L165.8 296.9L166.0 300.3L166.9 306.8L166.9 317.8L167.6 325.7L168.2 329.5L168.8 336.7L170.0 343.2L170.6 347.7L171.1 349.3L171.7 352.9L173.2 357.4L174.0 361.2L175.3 363.9L176.2 366.6L178.7 372.9L181.6 378.7L187.0 387.1L189.1 389.3L190.0 390.9L192.0 393.5L200.6 402.0L208.3 407.3L211.9 409.3L213.2 409.8L214.2 409.6L214.5 408.9L214.2 408.0L209.1 399.7L208.0 397.2L206.3 394.7L205.6 392.5L204.7 390.7L200.9 379.2L198.6 369.3L197.6 363.7L196.6 357.4L195.9 349.7L195.2 347.3L194.7 339.4L194.3 336.5L194.1 327.9L193.2 319.8L193.2 306.6L193.0 304.1L193.0 293.3L192.8 291.1L192.7 286.3L193.0 283.6L193.0 273.7L193.2 271.5L193.2 252.2L193.4 249.5L193.4 242.0L193.8 238.9L193.7 237.1L193.9 235.1L193.9 230.8L194.3 227.7L194.3 217.8L194.1 213.9L194.8 208.1L195.6 206.1L197.3 203.8L198.1 203.1L201.1 201.2L206.5 199.8L213.7 198.9L215.7 198.2L216.5 197.5L216.9 196.6L216.9 195.5L216.4 194.4L215.5 193.7L213.9 193.3L209.6 193.7L203.5 193.5L163.3 193.5L160.6 193.7L154.1 193.7L147.6 193.4L144.9 192.8L143.5 193.0L142.4 193.9L141.9 195.5L141.8 196.8L142.4 197.9L143.5 198.8L145.5 199.3L150.0 199.3L152.5 199.7L159.2 201.7L160.4 202.3L161.7 203.6L163.4 205.8L165.1 211.7L165.7 215.3L165.5 217.8L165.5 260.5L165.8 263.6L165.8 271.3L165.5 276.7L165.0 277.8L164.2 278.5L162.6 278.9L160.1 278.7L157.0 278.9L77.2 278.9L74.5 278.7L72.2 278.8L71.3 278.6L70.3 277.6L69.6 275.5L69.5 215.7L70.1 208.8L70.6 207.0L71.9 204.9L73.1 203.4L74.5 202.3L77.6 200.9L81.4 199.8L85.0 199.5L88.0 198.9L90.8 197.4L91.4 196.6L91.4 195.7L90.4 194.7L88.9 193.9L87.3 193.5L83.9 193.3ZM122.8 11.1L120.0 14.3L116.1 19.9L114.1 21.9L113.2 23.9L112.0 25.5L110.3 28.4L106.2 36.3L105.5 38.8L103.7 42.8L102.3 47.1L100.7 54.1L100.1 57.7L99.7 63.5L99.7 69.8L100.4 77.7L101.1 80.2L101.9 84.4L106.0 96.3L108.9 101.1L111.2 105.3L113.4 108.3L114.5 110.3L116.2 112.1L117.9 114.8L125.6 123.5L133.4 131.2L136.1 133.3L138.8 135.8L144.4 140.3L154.7 148.0L160.1 151.5L163.7 153.4L168.5 156.7L170.3 157.5L175.2 160.6L178.1 161.9L182.0 164.1L201.1 173.3L206.0 175.5L210.7 177.3L215.2 179.6L223.3 182.5L225.6 183.6L228.9 184.6L231.4 185.7L233.9 186.5L236.8 187.8L240.0 188.7L244.9 190.7L253.7 193.3L262.4 196.6L264.5 197.1L276.4 201.2L278.4 201.6L284.0 203.8L290.1 205.9L293.5 206.9L302.9 210.7L307.9 211.8L312.1 213.7L318.0 215.7L325.0 218.6L329.0 220.5L330.6 221.5L332.6 222.5L342.9 228.6L346.5 231.3L348.8 232.7L350.3 234.2L353.6 238.2L355.5 242.0L356.3 245.4L357.5 252.6L356.5 258.5L356.1 262.5L355.5 264.7L353.9 269.0L352.8 271.0L350.9 275.8L342.9 284.3L338.7 287.9L336.4 289.3L329.2 292.8L325.2 294.3L321.1 295.4L318.2 295.9L315.3 296.8L311.7 297.2L308.3 297.9L290.1 298.2L282.7 297.8L280.0 297.2L276.2 295.2L274.0 293.5L272.9 292.2L270.7 288.6L270.1 287.0L270.1 274.2L269.9 271.5L269.9 241.4L269.6 238.7L269.6 224.3L269.2 220.2L268.2 215.5L267.6 214.7L266.5 214.1L250.5 208.6L244.5 206.8L241.5 205.7L240.2 205.5L239.1 205.7L238.5 206.2L238.0 206.8L237.7 208.3L237.7 274.2L236.6 286.3L235.7 290.2L235.0 291.7L233.7 293.3L232.1 294.4L228.7 296.2L225.8 296.9L222.2 298.0L215.9 298.6L211.9 299.6L211.0 300.5L210.4 301.8L210.6 303.2L211.1 304.2L212.1 304.8L213.4 305.0L225.8 305.0L227.8 304.8L230.1 305.0L274.6 305.0L277.1 304.8L280.0 305.0L282.7 304.8L285.2 305.0L317.5 305.0L325.0 304.7L328.6 304.3L330.8 303.7L336.2 303.4L339.3 302.9L344.7 301.5L350.4 299.8L358.7 296.6L363.9 294.1L365.9 292.6L368.1 291.3L369.9 289.8L374.9 286.3L376.4 285.9L378.9 286.2L379.4 286.0L385.0 277.8L385.8 273.1L388.7 265.9L391.0 257.6L391.2 255.8L391.0 246.5L390.5 241.8L389.6 239.3L388.6 235.3L387.4 233.0L386.3 229.9L384.2 226.8L383.2 224.7L379.7 220.0L377.4 218.0L374.9 215.0L364.1 206.9L361.2 205.2L354.6 201.8L348.6 199.2L345.9 197.5L343.2 196.5L342.1 195.7L341.6 194.6L341.9 193.7L343.2 192.6L348.3 190.0L354.4 186.2L357.8 183.3L363.8 177.2L368.2 171.2L370.2 166.9L372.2 161.5L373.0 158.6L373.9 152.8L373.7 147.4L373.0 142.2L370.8 136.1L369.3 133.0L367.3 129.6L363.8 125.6L360.5 122.5L357.3 119.9L353.1 117.0L346.8 113.8L338.9 110.5L329.9 108.3L322.5 107.2L307.9 106.2L304.5 106.5L289.4 106.5L287.0 106.2L284.7 106.4L278.9 106.5L274.8 106.2L215.9 106.2L212.3 106.6L211.4 106.9L210.9 107.4L210.3 109.2L210.7 110.3L212.1 111.7L215.0 112.7L220.6 112.9L226.7 114.3L229.2 115.1L231.9 116.6L233.7 118.2L235.0 119.7L236.0 122.0L236.3 123.1L236.6 126.7L236.8 141.5L237.5 144.7L237.8 153.5L237.2 154.7L236.6 155.1L235.9 155.2L233.0 154.6L230.7 153.7L225.6 150.8L222.4 149.7L211.9 144.3L207.8 142.7L201.1 139.2L199.0 137.8L187.8 132.4L185.3 130.8L182.6 129.5L173.6 124.5L163.1 117.5L153.9 110.6L146.9 104.4L136.3 93.4L130.1 85.8L127.9 82.0L125.6 79.0L122.8 72.3L121.0 68.9L120.1 65.3L118.9 61.9L118.4 59.5L118.2 57.2L117.1 53.8L116.8 52.0L116.8 41.0L117.3 37.0L118.3 34.5L118.5 30.9L119.8 26.9L120.6 22.8L124.0 15.4L125.0 12.7L125.0 10.9L124.7 10.3L123.9 10.4ZM275.7 115.6L276.8 115.0L281.6 113.2L287.6 112.3L297.1 111.7L301.3 111.9L307.4 112.6L313.9 114.3L317.8 115.9L323.2 118.4L329.4 123.1L332.0 125.6L334.5 128.7L336.3 131.4L338.6 136.8L340.6 144.0L341.1 149.4L340.9 152.3L341.1 157.0L340.2 163.8L339.1 169.2L335.6 178.2L333.6 181.6L332.5 183.8L329.0 187.3L327.4 188.2L325.9 188.6L324.5 188.7L322.7 188.4L314.6 185.0L304.0 181.1L300.0 179.4L294.8 177.7L288.5 175.2L283.8 173.8L279.5 172.1L276.8 171.3L274.6 170.1L271.9 169.2L270.9 168.5L270.4 167.2L269.6 163.8L270.1 155.5L269.7 152.1L269.2 143.3L269.9 137.9L270.0 131.6L269.9 127.4L270.8 122.9L272.4 119.5L273.5 117.7Z"/>
+    <path fill="none" pathLength="1" d="M37.4 193.4L36.7 194.8L34.5 198.2L34.3 199.1L34.2 200.9L34.5 201.8L37.4 204.0L38.3 205.2L39.4 207.2L40.0 209.0L40.7 215.3L41.0 229.2L41.2 231.7L41.2 319.6L41.0 323.2L41.2 327.3L41.0 330.0L41.0 343.2L40.7 347.7L40.3 349.7L40.0 354.2L39.6 355.8L38.6 358.5L36.4 361.6L34.7 362.7L30.4 364.1L23.4 365.3L20.7 366.0L19.6 366.7L19.0 367.5L18.8 368.6L19.1 369.4L20.3 370.1L22.3 370.4L35.8 370.6L68.9 370.4L71.8 370.6L83.0 370.7L90.2 370.2L91.1 369.9L91.8 369.3L92.1 368.4L91.9 367.3L91.6 366.7L90.9 366.2L88.0 365.3L82.1 364.6L75.4 362.6L74.3 362.1L73.3 361.2L71.6 359.0L69.8 354.7L69.5 352.4L69.5 288.4L69.6 287.2L70.1 286.1L70.7 285.2L71.3 284.8L72.9 284.5L155.4 284.5L158.1 284.3L163.7 284.6L164.4 284.9L165.0 285.5L165.5 286.8L165.8 291.5L165.8 296.9L166.0 300.3L166.9 306.8L166.9 317.8L167.6 325.7L168.2 329.5L168.8 336.7L170.0 343.2L170.6 347.7L171.1 349.3L171.7 352.9L173.2 357.4L174.0 361.2L175.3 363.9L176.2 366.6L178.7 372.9L181.6 378.7L187.0 387.1L189.1 389.3L190.0 390.9L192.0 393.5L200.6 402.0L208.3 407.3L211.9 409.3L213.2 409.8L214.2 409.6L214.5 408.9L214.2 408.0L209.1 399.7L208.0 397.2L206.3 394.7L205.6 392.5L204.7 390.7L200.9 379.2L198.6 369.3L197.6 363.7L196.6 357.4L195.9 349.7L195.2 347.3L194.7 339.4L194.3 336.5L194.1 327.9L193.2 319.8L193.2 306.6L193.0 304.1L193.0 293.3L192.8 291.1L192.7 286.3L193.0 283.6L193.0 273.7L193.2 271.5L193.2 252.2L193.4 249.5L193.4 242.0L193.8 238.9L193.7 237.1L193.9 235.1L193.9 230.8L194.3 227.7L194.3 217.8L194.1 213.9L194.8 208.1L195.6 206.1L197.3 203.8L198.1 203.1L201.1 201.2L206.5 199.8L213.7 198.9L215.7 198.2L216.5 197.5L216.9 196.6L216.9 195.5L216.4 194.4L215.5 193.7L213.9 193.3L209.6 193.7L203.5 193.5L163.3 193.5L160.6 193.7L154.1 193.7L147.6 193.4L144.9 192.8L143.5 193.0L142.4 193.9L141.9 195.5L141.8 196.8L142.4 197.9L143.5 198.8L145.5 199.3L150.0 199.3L152.5 199.7L159.2 201.7L160.4 202.3L161.7 203.6L163.4 205.8L165.1 211.7L165.7 215.3L165.5 217.8L165.5 260.5L165.8 263.6L165.8 271.3L165.5 276.7L165.0 277.8L164.2 278.5L162.6 278.9L160.1 278.7L157.0 278.9L77.2 278.9L74.5 278.7L72.2 278.8L71.3 278.6L70.3 277.6L69.6 275.5L69.5 215.7L70.1 208.8L70.6 207.0L71.9 204.9L73.1 203.4L74.5 202.3L77.6 200.9L81.4 199.8L85.0 199.5L88.0 198.9L90.8 197.4L91.4 196.6L91.4 195.7L90.4 194.7L88.9 193.9L87.3 193.5L83.9 193.3Z"/>
+    <path fill="none" pathLength="1" d="M122.8 11.1L120.0 14.3L116.1 19.9L114.1 21.9L113.2 23.9L112.0 25.5L110.3 28.4L106.2 36.3L105.5 38.8L103.7 42.8L102.3 47.1L100.7 54.1L100.1 57.7L99.7 63.5L99.7 69.8L100.4 77.7L101.1 80.2L101.9 84.4L106.0 96.3L108.9 101.1L111.2 105.3L113.4 108.3L114.5 110.3L116.2 112.1L117.9 114.8L125.6 123.5L133.4 131.2L136.1 133.3L138.8 135.8L144.4 140.3L154.7 148.0L160.1 151.5L163.7 153.4L168.5 156.7L170.3 157.5L175.2 160.6L178.1 161.9L182.0 164.1L201.1 173.3L206.0 175.5L210.7 177.3L215.2 179.6L223.3 182.5L225.6 183.6L228.9 184.6L231.4 185.7L233.9 186.5L236.8 187.8L240.0 188.7L244.9 190.7L253.7 193.3L262.4 196.6L264.5 197.1L276.4 201.2L278.4 201.6L284.0 203.8L290.1 205.9L293.5 206.9L302.9 210.7L307.9 211.8L312.1 213.7L318.0 215.7L325.0 218.6L329.0 220.5L330.6 221.5L332.6 222.5L342.9 228.6L346.5 231.3L348.8 232.7L350.3 234.2L353.6 238.2L355.5 242.0L356.3 245.4L357.5 252.6L356.5 258.5L356.1 262.5L355.5 264.7L353.9 269.0L352.8 271.0L350.9 275.8L342.9 284.3L338.7 287.9L336.4 289.3L329.2 292.8L325.2 294.3L321.1 295.4L318.2 295.9L315.3 296.8L311.7 297.2L308.3 297.9L290.1 298.2L282.7 297.8L280.0 297.2L276.2 295.2L274.0 293.5L272.9 292.2L270.7 288.6L270.1 287.0L270.1 274.2L269.9 271.5L269.9 241.4L269.6 238.7L269.6 224.3L269.2 220.2L268.2 215.5L267.6 214.7L266.5 214.1L250.5 208.6L244.5 206.8L241.5 205.7L240.2 205.5L239.1 205.7L238.5 206.2L238.0 206.8L237.7 208.3L237.7 274.2L236.6 286.3L235.7 290.2L235.0 291.7L233.7 293.3L232.1 294.4L228.7 296.2L225.8 296.9L222.2 298.0L215.9 298.6L211.9 299.6L211.0 300.5L210.4 301.8L210.6 303.2L211.1 304.2L212.1 304.8L213.4 305.0L225.8 305.0L227.8 304.8L230.1 305.0L274.6 305.0L277.1 304.8L280.0 305.0L282.7 304.8L285.2 305.0L317.5 305.0L325.0 304.7L328.6 304.3L330.8 303.7L336.2 303.4L339.3 302.9L344.7 301.5L350.4 299.8L358.7 296.6L363.9 294.1L365.9 292.6L368.1 291.3L369.9 289.8L374.9 286.3L376.4 285.9L378.9 286.2L379.4 286.0L385.0 277.8L385.8 273.1L388.7 265.9L391.0 257.6L391.2 255.8L391.0 246.5L390.5 241.8L389.6 239.3L388.6 235.3L387.4 233.0L386.3 229.9L384.2 226.8L383.2 224.7L379.7 220.0L377.4 218.0L374.9 215.0L364.1 206.9L361.2 205.2L354.6 201.8L348.6 199.2L345.9 197.5L343.2 196.5L342.1 195.7L341.6 194.6L341.9 193.7L343.2 192.6L348.3 190.0L354.4 186.2L357.8 183.3L363.8 177.2L368.2 171.2L370.2 166.9L372.2 161.5L373.0 158.6L373.9 152.8L373.7 147.4L373.0 142.2L370.8 136.1L369.3 133.0L367.3 129.6L363.8 125.6L360.5 122.5L357.3 119.9L353.1 117.0L346.8 113.8L338.9 110.5L329.9 108.3L322.5 107.2L307.9 106.2L304.5 106.5L289.4 106.5L287.0 106.2L284.7 106.4L278.9 106.5L274.8 106.2L215.9 106.2L212.3 106.6L211.4 106.9L210.9 107.4L210.3 109.2L210.7 110.3L212.1 111.7L215.0 112.7L220.6 112.9L226.7 114.3L229.2 115.1L231.9 116.6L233.7 118.2L235.0 119.7L236.0 122.0L236.3 123.1L236.6 126.7L236.8 141.5L237.5 144.7L237.8 153.5L237.2 154.7L236.6 155.1L235.9 155.2L233.0 154.6L230.7 153.7L225.6 150.8L222.4 149.7L211.9 144.3L207.8 142.7L201.1 139.2L199.0 137.8L187.8 132.4L185.3 130.8L182.6 129.5L173.6 124.5L163.1 117.5L153.9 110.6L146.9 104.4L136.3 93.4L130.1 85.8L127.9 82.0L125.6 79.0L122.8 72.3L121.0 68.9L120.1 65.3L118.9 61.9L118.4 59.5L118.2 57.2L117.1 53.8L116.8 52.0L116.8 41.0L117.3 37.0L118.3 34.5L118.5 30.9L119.8 26.9L120.6 22.8L124.0 15.4L125.0 12.7L125.0 10.9L124.7 10.3L123.9 10.4Z"/>
+    <path fill="none" pathLength="1" d="M275.7 115.6L276.8 115.0L281.6 113.2L287.6 112.3L297.1 111.7L301.3 111.9L307.4 112.6L313.9 114.3L317.8 115.9L323.2 118.4L329.4 123.1L332.0 125.6L334.5 128.7L336.3 131.4L338.6 136.8L340.6 144.0L341.1 149.4L340.9 152.3L341.1 157.0L340.2 163.8L339.1 169.2L335.6 178.2L333.6 181.6L332.5 183.8L329.0 187.3L327.4 188.2L325.9 188.6L324.5 188.7L322.7 188.4L314.6 185.0L304.0 181.1L300.0 179.4L294.8 177.7L288.5 175.2L283.8 173.8L279.5 172.1L276.8 171.3L274.6 170.1L271.9 169.2L270.9 168.5L270.4 167.2L269.6 163.8L270.1 155.5L269.7 152.1L269.2 143.3L269.9 137.9L270.0 131.6L269.9 127.4L270.8 122.9L272.4 119.5L273.5 117.7Z"/>
+  </symbol>
+  <symbol id="star5" viewBox="0 0 70 14">
+    <path id="s" d="M7 1l1.8 3.9 4.2.5-3.1 2.9.8 4.2L7 10.4 3.3 12.5l.8-4.2L1 5.4l4.2-.5z"/>
+    <use href="#s" x="14"/><use href="#s" x="28"/><use href="#s" x="42"/><use href="#s" x="56"/>
+  </symbol>
+</svg>
+
+<header class="site-head">
+  <a class="brand" href="#top" aria-label="HBS Coiffures, haut de page">
+    <img src="logo-hb.jpg" width="480" height="385" alt="">
+    <span>HBS Coiffures</span>
+  </a>
+  <a class="btn btn--line" href="[LIEN DE RÉSERVATION]">Réserver</a>
+</header>
+
+<main id="top">
+
+  <div class="track" id="track">
+    <div class="stage" id="stage">
+      <figure class="ph photo-hero" data-ph="[PHOTO_HERO] · 2400×1600">
+        <img src="[PHOTO_HERO].jpg" width="2400" height="1600" alt="Les mains d'un barbier passent la tondeuse sur la nuque d'un client vu de dos, sur fond sombre.">
+      </figure>
+      <figure class="ph photo-chair" data-ph="[PHOTO_CHAIR] · 2400×1600">
+        <img src="[PHOTO_CHAIR].jpg" width="2400" height="1600" alt="Fauteuil de barbier en cuir capitonné et miroir, dans un salon sombre.">
+      </figure>
+      <div class="mask" aria-hidden="true">
+        <i class="m-a"></i><i class="m-b"></i>
+        <i class="edge e-a"></i><i class="edge e-b"></i>
+      </div>
+      <div class="darken" aria-hidden="true"></div>
+      <svg class="monogram" aria-hidden="true" focusable="false"><use href="#hb"/></svg>
+      <div class="axis" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
+    </div>
+
+    <div class="content" id="content">
+      <div class="intro">
+        <span class="eyebrow" data-rv="0">Barbier — Coiffure homme</span>
+        <h1>
+          <span class="ln" data-rv="1">L’art</span>
+          <span class="ln" data-rv="2">du geste</span>
+          <span class="ln accent-gold" data-rv="3">précis.</span>
+        </h1>
+        <p class="sub" data-rv="4">Coupe, dégradé et barbe, au millimètre.</p>
+      </div>
+
+      <article class="svc svc--l" style="--y:1500;--gap:78" data-rv-block>
+        <i class="tick"></i>
+        <svg class="icon" viewBox="0 0 30 30" aria-hidden="true"><circle cx="8" cy="23" r="3.6"/><circle cx="22" cy="23" r="3.6"/><path d="M10 20 22 4M20 20 8 4"/></svg>
+        <h3><span class="ln">La coupe </span><span class="ln">sur mesure</span></h3>
+        <p><span class="ln">On regarde votre visage, vos épis et </span><span class="ln">votre rythme de vie avant de prendre </span><span class="ln">les ciseaux.</span></p>
+      </article>
+
+      <article class="svc svc--r" style="--y:1500;--gap:78" data-rv-block>
+        <i class="tick"></i>
+        <svg class="icon" viewBox="0 0 30 30" aria-hidden="true"><rect x="4" y="19" width="5.5" height="7"/><rect x="12.25" y="12" width="5.5" height="14"/><rect x="20.5" y="4" width="5.5" height="22"/></svg>
+        <h3><span class="ln">Dégradés </span><span class="ln">nets</span></h3>
+        <p><span class="ln">Du skin fade au dégradé bas, des </span><span class="ln">transitions propres qui tiennent </span><span class="ln">plusieurs semaines.</span></p>
+      </article>
+
+      <article class="svc svc--l" style="--y:1759;--gap:88" data-rv-block>
+        <i class="tick"></i>
+        <svg class="icon" viewBox="0 0 30 30" aria-hidden="true"><path d="M2.5 8H19l2.5 2.5V15H8C4.8 15 2.5 12.5 2.5 8Z"/><circle cx="21.5" cy="13" r=".9"/><path d="M21 15.5 27.5 26"/><path d="M18.5 15.5 25 26l2.5 0"/></svg>
+        <h3><span class="ln">La barbe </span><span class="ln">dessinée</span></h3>
+        <p><span class="ln">Taille, contours au rasoir et </span><span class="ln">finitions soignées pour une barbe </span><span class="ln">qui a de la tenue.</span></p>
+      </article>
+
+      <article class="svc svc--r" style="--y:1759;--gap:88" data-rv-block>
+        <i class="tick"></i>
+        <svg class="icon" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="11.5"/><path d="M15 7.5V15l5 3.5"/></svg>
+        <h3><span class="ln">Prenez </span><span class="ln">votre temps</span></h3>
+        <p><span class="ln">Ouvert du mardi au dimanche. </span><span class="ln">Un créneau réservé, c’est un </span><span class="ln">créneau respecté.</span></p>
+      </article>
+
+      <article class="svc svc--c" id="lastBlock" style="--y:2063" data-rv-block>
+        <svg class="icon" viewBox="0 0 30 30" aria-hidden="true"><path d="M6 21 4 9l6.5 5L15 6l4.5 8L26 9l-2 12Z"/><path d="M6 25h18"/></svg>
+        <h3><span class="ln">Un salon pour vous, </span><span class="ln">messieurs</span></h3>
+        <p><span class="ln">Une ambiance calme, un café, et </span><span class="ln">quelqu’un qui écoute ce que vous </span><span class="ln">voulez vraiment.</span></p>
+      </article>
+    </div>
+  </div>
+
+  <section class="menu on-paper" id="menu" aria-labelledby="menu-title">
+    <div class="menu-fade" aria-hidden="true"></div>
+    <div class="menu-pin" id="menuPin">
+      <div class="menu-panel">
+        <h2 class="display" id="menu-title"><span class="ln">La </span><span class="ln"><em>Carte</em></span></h2>
+        <div class="menu-win" id="menuWin">
+          <ul class="menu-row" id="menuRow">
+            <li class="card">
+              <span class="num" aria-hidden="true">01</span>
+              <h3>Coupe homme</h3>
+              <p class="dur">[DURÉE]</p>
+              <p class="price">[PRIX] €</p>
+            </li>
+            <li class="ph detail" data-ph="[PHOTO_DETAIL_1] · 1200×1600">
+              <img src="[PHOTO_DETAIL_1].jpg" width="900" height="1200" loading="lazy" alt="Dégradé terminé et motif tracé sur le côté, client vu de dos.">
+            </li>
+            <!-- à confirmer -->
+            <li class="card" data-optional>
+              <span class="num" aria-hidden="true">02</span>
+              <h3>Taille de barbe</h3>
+              <p class="dur">[DURÉE]</p>
+              <p class="price">[PRIX] €</p>
+            </li>
+            <!-- à confirmer -->
+            <li class="card" data-optional>
+              <span class="num" aria-hidden="true">03</span>
+              <h3>Coupe + barbe</h3>
+              <p class="dur">[DURÉE]</p>
+              <p class="price">[PRIX] €</p>
+            </li>
+            <li class="ph detail" data-ph="[PHOTO_DETAIL_2] · 1200×1600">
+              <img src="[PHOTO_DETAIL_2].jpg" width="900" height="1200" loading="lazy" alt="Barbe taillée aux ciseaux, photo cadrée sur la mâchoire.">
+            </li>
+            <!-- à confirmer -->
+            <li class="card" data-optional>
+              <span class="num" aria-hidden="true">04</span>
+              <h3>Dégradé / fade</h3>
+              <p class="dur">[DURÉE]</p>
+              <p class="price">[PRIX] €</p>
+            </li>
+            <li class="ph detail" data-ph="[PHOTO_DETAIL_3] · 1200×1600">
+              <img src="[PHOTO_DETAIL_3].jpg" width="900" height="1200" loading="lazy" alt="Barbier passant la tondeuse sur un dégradé, client vu de dos.">
+            </li>
+            <!-- à confirmer -->
+            <li class="card" data-optional>
+              <span class="num" aria-hidden="true">05</span>
+              <h3>Coupe enfant</h3>
+              <p class="dur">[DURÉE]</p>
+              <p class="price">[PRIX] €</p>
+            </li>
+          </ul>
+          <div class="menu-cta"><a class="btn btn--cream" href="[LIEN DE RÉSERVATION]">Réserver un créneau</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="paper on-paper">
+    <section class="hours wrap" aria-labelledby="hours-title">
+      <div>
+        <h2 class="display" id="hours-title"><span class="ln">Nos </span><span class="ln"><em>Horaires</em></span></h2>
+        <address class="addr" style="font-style:normal">
+          HBS Coiffures<br>
+          [RUE ET NUMÉRO], [CODE POSTAL] [VILLE]<br>
+          <a href="tel:[TÉLÉPHONE]">[TÉLÉPHONE]</a><br>
+          <a class="go" href="[LIEN GOOGLE MAPS]">Voir l’itinéraire</a>
+        </address>
+        <figure class="ph interior" data-ph="[PHOTO_INTERIOR] · 2400×1600">
+          <img src="[PHOTO_INTERIOR].jpg" width="1600" height="1063" loading="lazy" alt="Salon de barbier aux murs de briques avec trois fauteuils en cuir, photo d'illustration.">
+          <figcaption>Photo d’illustration</figcaption>
+        </figure>
+      </div>
+      <dl id="hoursList">
+        <div class="day-row closed" data-day="0"><dt>Lundi</dt><dd>Fermé</dd></div>
+        <div class="day-row" data-day="1"><dt>Mardi</dt><dd>09:00–19:00</dd></div>
+        <div class="day-row" data-day="2"><dt>Mercredi</dt><dd>09:00–19:00</dd></div>
+        <div class="day-row" data-day="3"><dt>Jeudi</dt><dd>09:00–19:00</dd></div>
+        <div class="day-row" data-day="4"><dt>Vendredi</dt><dd>09:00–19:00</dd></div>
+        <div class="day-row" data-day="5"><dt>Samedi</dt><dd>09:00–19:00</dd></div>
+        <div class="day-row" data-day="6"><dt>Dimanche</dt><dd>09:00–18:00</dd></div>
+      </dl>
+    </section>
+
+    <section class="reviews wrap" aria-labelledby="rev-title">
+      <div class="rev-head">
+        <h2 class="display" id="rev-title">
+          <span class="ln">Ils nous </span><span class="ln">confient </span><span class="ln ln-grey">leur <em>tête</em></span>
+        </h2>
+        <p>Des clients fidèles, une coupe après l’autre.</p>
+      </div>
+      <!-- Remplacer uniquement par de vrais avis, copiés avec la permission de leur auteur. Aucun faux avis. -->
+      <article class="rev">
+        <div>
+          <p class="who">[PRÉNOM + INITIALE]</p>
+          <p class="src">Avis Google</p>
+          <svg class="stars" aria-hidden="true"><use href="#star5"/></svg>
+        </div>
+        <blockquote>[TEXTE DE L'AVIS RÉEL]</blockquote>
+      </article>
+      <article class="rev">
+        <div>
+          <p class="who">[PRÉNOM + INITIALE]</p>
+          <p class="src">Avis Google</p>
+          <svg class="stars" aria-hidden="true"><use href="#star5"/></svg>
+        </div>
+        <blockquote>[TEXTE DE L'AVIS RÉEL]</blockquote>
+      </article>
+      <article class="rev">
+        <div>
+          <p class="who">[PRÉNOM + INITIALE]</p>
+          <p class="src">Avis Google</p>
+          <svg class="stars" aria-hidden="true"><use href="#star5"/></svg>
+        </div>
+        <blockquote>[TEXTE DE L'AVIS RÉEL]</blockquote>
+      </article>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-main">
+    <svg class="foot-mono" id="footMono" aria-hidden="true" focusable="false"><use href="#hb"/></svg>
+    <h2 class="display"><span class="ln">Votre prochaine coupe </span><span class="ln">commence <em>ici.</em></span></h2>
+    <div class="foot-btns">
+      <a class="btn btn--gold" href="[LIEN DE RÉSERVATION]">Réserver</a>
+      <a class="btn btn--line" href="tel:[TÉLÉPHONE]">Appeler</a>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <strong class="foot-brand"><img src="logo-hb.jpg" width="480" height="385" loading="lazy" alt="Blason HB Coiffure For Men">HBS Coiffures</strong>
+    <span>[RUE ET NUMÉRO], [CODE POSTAL] [VILLE]</span>
+    <span>Mar–Sam 9h–19h · Dim 9h–18h · Lun fermé</span>
+    <span>© [ANNÉE] HBS Coiffures</span>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Actions rapides">
+  <a href="[LIEN DE RÉSERVATION]">Réserver</a>
+  <a href="tel:[TÉLÉPHONE]">Appeler</a>
+</nav>
+
+<div class="probe" id="probe" aria-hidden="true"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* The prompt's table scrubs the monogram from p = 0, which leaves a blank black
+     page at the top of the site. So the first draw plays once on load, and everything
+     after it stays scroll-driven. Set to 0 for a pure scrub. Recorder mode is always pure. */
+  var LOAD_DRAW_MS = 1800;
+
+  var REC_MS = 6500;
+  var SMOOTH = 0.18;
+  var EPS = 0.0005;
+
+  var root = document.documentElement;
+  var stage = document.getElementById('stage');
+  var track = document.getElementById('track');
+  var lastBlock = document.getElementById('lastBlock');
+  var menuPin = document.getElementById('menuPin');
+  var menuWin = document.getElementById('menuWin');
+  var menuRow = document.getElementById('menuRow');
+  var probe = document.getElementById('probe');
+  var details = [].slice.call(document.querySelectorAll('.detail'));
+  var REC = new URLSearchParams(location.search).get('rec') === '1';
+  var mqPortrait = matchMedia('(max-width:609px),(orientation:portrait)');
+  var mqReduced = matchMedia('(prefers-reduced-motion: reduce)');
+
+  var rm = false, list = false;
+  var vh = 0, u = 1, end = 1, knee = .8, trackTop = 0;
+  var pinTop = 0, pinRange = 1, maxX = 0, winW = 0;
+  var cur = 0, mCur = 0, raf = 0;
+  var reveals = [];
+
+  function clamp(v, a, b) { return Math.min(b === undefined ? 1 : b, Math.max(a === undefined ? 0 : a, v)); }
+
+  function setModes() {
+    rm = mqReduced.matches && !REC;
+    list = rm || mqPortrait.matches;
+    root.classList.toggle('rm', rm);
+    root.classList.toggle('m-list', list);
+  }
+
+  /* ---------- Measures ---------- */
+  function layout() {
+    setModes();
+    reveals.forEach(function (r) { r.el.style.opacity = ''; r.el.style.transform = ''; });
+
+    vh = stage.offsetHeight;
+    u = probe.getBoundingClientRect().width / 100;
+
+    var t = track.getBoundingClientRect();
+    trackTop = t.top + scrollY;
+    var lastBottom = lastBlock.getBoundingClientRect().bottom - t.top;
+    end = lastBottom + 0.75 * vh;
+    knee = lastBottom / end;
+    track.style.height = (end + vh) + 'px';
+
+    if (list) {
+      menuPin.style.height = '';
+      menuRow.style.transform = '';
+      details.forEach(function (d) { d.img.style.transform = ''; });
+    } else {
+      var rowW = menuRow.offsetWidth;
+      winW = menuWin.clientWidth;
+      maxX = Math.max(0, rowW - winW);
+      menuPin.style.height = (rowW + vh) + 'px';
+      pinTop = menuPin.getBoundingClientRect().top + scrollY;
+      pinRange = Math.max(1, rowW);
+      details.forEach(function (d) { d.x = d.offsetLeft + d.offsetWidth / 2; });
+    }
+
+    reveals = [];
+    var introTop = document.querySelector('.intro').getBoundingClientRect().top + scrollY;
+    [].forEach.call(document.querySelectorAll('[data-rv]'), function (el) {
+      reveals.push({ el: el, top: introTop + Number(el.getAttribute('data-rv')) * 40 * u });
+    });
+    [].forEach.call(document.querySelectorAll('[data-rv-block]'), function (el) {
+      reveals.push({ el: el, top: el.getBoundingClientRect().top + scrollY });
+    });
+
+    wake();
+  }
+
+  /* ---------- Scroll → stage ---------- */
+  function targetP() { return clamp((scrollY - trackTop) / end); }
+  function targetM() { return list ? 0 : clamp((scrollY - pinTop) / pinRange); }
+
+  function stageP(p) {
+    return p < knee ? p / knee * 0.70 : 0.70 + (p - knee) / (1 - knee) * 0.30;
+  }
+
+  function render() {
+    root.classList.toggle('is-past', scrollY >= trackTop + end);
+
+    if (!rm) {
+      stage.style.setProperty('--p', stageP(cur).toFixed(4));
+      var y = cur * end, span = 110 * u, rise = 12 * u;
+      for (var i = 0; i < reveals.length; i++) {
+        var a = clamp((y + vh * 0.92 - reveals[i].top) / span);
+        var s = reveals[i].el.style;
+        s.opacity = a.toFixed(3);
+        s.transform = a < 1 ? 'translateY(' + (rise * (1 - a)).toFixed(2) + 'px)' : '';
+      }
+    }
+
+    if (!list) {
+      var x = mCur * maxX;
+      menuRow.style.transform = 'translate3d(' + (-x).toFixed(1) + 'px,0,0)';
+      for (var j = 0; j < details.length; j++) {
+        var q = clamp((details[j].x - x) / winW);
+        details[j].img.style.transform = 'translateX(' + ((0.5 - q) * 12).toFixed(2) + '%)';
+      }
+    }
+  }
+
+  function tick() {
+    raf = 0;
+    var t = targetP(), m = targetM();
+    cur += (t - cur) * SMOOTH;
+    mCur += (m - mCur) * SMOOTH;
+    if (Math.abs(t - cur) < EPS) cur = t;
+    if (Math.abs(m - mCur) < EPS) mCur = m;
+    render();
+    if (cur !== t || mCur !== m) raf = requestAnimationFrame(tick);
+  }
+  function wake() { if (!raf) raf = requestAnimationFrame(tick); }
+
+  /* ---------- First draw, on load only ---------- */
+  function playIntro() {
+    if (REC) return;
+    if (rm || !LOAD_DRAW_MS || scrollY > 0) { stage.style.setProperty('--intro', LOAD_DRAW_MS ? 1 : 0); return; }
+    var t0 = performance.now();
+    (function step(now) {
+      var k = clamp((now - t0) / LOAD_DRAW_MS);
+      var e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      stage.style.setProperty('--intro', e.toFixed(4));
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  /* ---------- Horaires, Europe/Brussels ---------- */
+  var SLOTS = [null, [540, 1140], [540, 1140], [540, 1140], [540, 1140], [540, 1140], [540, 1080]];
+  var DAYS = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
+  var fmt = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Brussels', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+  });
+  var lastHoursKey = '';
+
+  function updateHours() {
+    var parts = {};
+    fmt.formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+    var day = DAYS[parts.weekday];
+    var mins = Number(parts.hour) * 60 + Number(parts.minute);
+    var slot = SLOTS[day];
+    var open = !!slot && mins >= slot[0] && mins < slot[1];
+    var key = day + '|' + open;
+    if (key === lastHoursKey) return;
+    lastHoursKey = key;
+
+    [].forEach.call(document.querySelectorAll('#hoursList .day-row'), function (row) {
+      var isToday = Number(row.getAttribute('data-day')) === day;
+      row.classList.toggle('today', isToday);
+      var dt = row.querySelector('dt');
+      [].forEach.call(dt.querySelectorAll('.tag,.status'), function (n) { n.remove(); });
+      if (isToday) {
+        var tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = 'Aujourd’hui';
+        var st = document.createElement('span');
+        st.className = 'status';
+        st.textContent = open ? 'Ouvert maintenant' : 'Fermé maintenant';
+        dt.append(' ', tag, ' ', st);
+      }
+    });
+  }
+
+  /* ---------- Footer monogram ---------- */
+  function watchFooter() {
+    var mono = document.getElementById('footMono');
+    if (!('IntersectionObserver' in window)) { mono.classList.add('is-drawn'); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { mono.classList.add('is-drawn'); io.disconnect(); }
+    }, { threshold: 0.4 });
+    io.observe(mono);
+  }
+
+  /* ---------- Recorder (?rec=1) ---------- */
+  function setupRecorder() {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    var clock = document.createElement('i');
+    clock.style.cssText = 'position:fixed;width:0;height:0;pointer-events:none';
+    document.body.appendChild(clock);
+    var anim = clock.animate([
+      { opacity: 0, offset: 0 },
+      { opacity: 0, offset: 0.03, easing: 'cubic-bezier(.45,.05,.55,.95)' },
+      { opacity: 1, offset: 0.94 },
+      { opacity: 1, offset: 1 }
+    ], { duration: REC_MS, fill: 'both' });
+    var manual = false;
+
+    function apply() {
+      var e = Number(getComputedStyle(clock).opacity);
+      window.scrollTo(0, e * (trackTop + end + 0.9 * vh));
+      cur = targetP();
+      mCur = targetM();
+      render();
+    }
+    /* t = 0 → 1 over the 6.5 s timeline. Applied synchronously, with no smoothing. */
+    window.__recProgress = function (t) {
+      manual = true;
+      anim.pause();
+      anim.currentTime = clamp(t) * REC_MS;
+      apply();
+    };
+    (function play() {
+      if (manual) return;
+      apply();
+      if (anim.playState !== 'finished') requestAnimationFrame(play);
+    })();
+  }
+
+  /* ---------- Start ---------- */
+  details.forEach(function (d) { d.img = d.querySelector('img'); });
+
+  layout();
+  cur = targetP();
+  mCur = targetM();
+  render();
+  playIntro();
+  updateHours();
+  setInterval(updateHours, 30000);
+  watchFooter();
+
+  addEventListener('scroll', wake, { passive: true });
+
+  var rT = 0;
+  addEventListener('resize', function () {
+    clearTimeout(rT);
+    rT = setTimeout(layout, 120);
+  });
+  addEventListener('load', layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  [mqPortrait, mqReduced].forEach(function (m) {
+    if (m.addEventListener) m.addEventListener('change', layout);
+  });
+
+  if (REC) {
+    window.scrollTo(0, 0);
+    setupRecorder();
+  }
+})();
+</script>
+</body>
+</html>
